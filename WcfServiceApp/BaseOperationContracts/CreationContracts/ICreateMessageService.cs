@@ -1,16 +1,18 @@
-﻿using System;
+﻿using MessageDbLib.MessagingEntities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using WcfServiceApp.Messaging.DataContracts;
 
 namespace WcfServiceApp.BaseOperationContracts.CreationContracts
 {
     [ServiceContract]
-    public interface ICreate
+    public interface ICreateMessageService
     {
         [OperationContract]
-        int Create(int number);
+        void CreateMessage(UserTable user, MessageContract message);
     }
 }

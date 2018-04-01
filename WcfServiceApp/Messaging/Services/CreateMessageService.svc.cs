@@ -4,16 +4,17 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using MessageDbLib.MessagingEntities;
 using WcfServiceApp.BaseOperationContracts.CreationContracts;
+using WcfServiceApp.Messaging.DataContracts;
 
 namespace WcfServiceApp.Messaging.Services
 {
-    public class CreateMessage : ICreate
+    public class CreateMessageService : ICreateMessageService
     {
-        public int Create(int number)//MessageContract message
+        public void CreateMessage(UserTable user, MessageContract message)
         {
-            System.Console.WriteLine("Test " + number);
-            return number * 2;
+            throw new NotImplementedException();
         }
     }
 }

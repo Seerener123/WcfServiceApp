@@ -39,6 +39,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,6 +50,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDbInterfaces\IBaseEntity.cs" />
+    <Compile Include="BaseDbInterfaces\IMessage.cs" />
+    <Compile Include="BaseDbInterfaces\IMessageTransaction.cs" />
+    <Compile Include="BaseDbInterfaces\IUser.cs" />
+    <Compile Include="DbContexts\MessageDbContext.cs" />
+    <Compile Include="DbPersistances\PersistMessage.cs" />
+    <Compile Include="DbPersistances\PersistUser.cs" />
+    <Compile Include="MessagingEntities\AdvancedUser.cs" />
+    <Compile Include="MessagingEntities\MessageTable.cs" />
+    <Compile Include="MessagingEntities\MessageTransactionTable.cs" />
+    <Compile Include="MessagingEntities\UserTable.cs" />
+    <Compile Include="DbPersistances\IDbPersistant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -55,7 +68,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DbContexts\" />
+    <Folder Include="DbDeletions\" />
+    <Folder Include="DbRetrievals\" />
+    <Folder Include="DbUpdates\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

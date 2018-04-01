@@ -42,7 +42,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -62,7 +69,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Messaging\Services\CreateMessage.svc" />
+    <Content Include="Messaging\Services\CreateMessageService.svc" />
+    <Content Include="Messaging\Services\CreateUserService.svc" />
     <Content Include="PracticeTs\Services\Service1.svc" />
     <Content Include="PracticeTs\Services\TransferService.svc" />
     <Content Include="Web.config" />
@@ -70,10 +78,14 @@
   <ItemGroup>
     <Compile Include="Messaging\DataContracts\IMessageContract.cs" />
     <Compile Include="Messaging\DataContracts\MessageContract.cs" />
-    <Compile Include="Messaging\Services\CreateMessage.svc.cs">
-      <DependentUpon>CreateMessage.svc</DependentUpon>
+    <Compile Include="Messaging\Services\CreateMessageService.svc.cs">
+      <DependentUpon>CreateMessageService.svc</DependentUpon>
     </Compile>
-    <Compile Include="BaseOperationContracts\CreationContracts\ICreate.cs" />
+    <Compile Include="Messaging\Services\CreateUserService.svc.cs">
+      <DependentUpon>CreateUserService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="BaseOperationContracts\CreationContracts\ICreateMessageService.cs" />
+    <Compile Include="Messaging\Services\ICreateUserService.cs" />
     <Compile Include="PracticeTs\Contracts\IPracticeContract.cs" />
     <Compile Include="PracticeTs\Contracts\PracticeContract.cs" />
     <Compile Include="PracticeTs\Services\IService1.cs" />
@@ -91,12 +103,19 @@
     <Folder Include="Messaging\OperationContracts\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MessageDbLib\MessageDbLib.csproj">
+      <Project>{77445fc9-820e-4bc0-aacc-870047e1b956}</Project>
+      <Name>MessageDbLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

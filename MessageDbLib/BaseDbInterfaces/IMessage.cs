@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MessageDbLib.BaseDbInterfaces
 {
-    public interface IBaseEntity
+    public interface IMessage : IBaseEntity
     {
-        [Key]
-        long ID { get; set; }
+        string MESSAGETEXT { get; set; }
+        long? SENDERID { get; set; }
+        DateTime? MESSAGECREATED { get; set; }
     }
 }
