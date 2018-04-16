@@ -1,0 +1,7 @@
+﻿Table Inheritance
+
+In entity, we have three ways of dealing with inheritance regards
+to domain/entit classes. 
+The first: table-per-heirancy, were multiple domain/entity classes
+point and their data to one single shared table. In other words, we
+have one base 

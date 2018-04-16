@@ -72,5 +72,8 @@
     <Folder Include="DbRetrievals\" />
     <Folder Include="DbUpdates\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="MessagingEntities\TableInheritance.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

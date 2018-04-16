@@ -13,16 +13,16 @@ namespace WcfServiceApp.Messaging.Services
     {
         public void PersistNewUser(UserTable user)
         {
-            /*var advanceUser = new AdvancedUser()
+            var advanceUser = new AdvancedUser()
             {
                 USERNAME = user.USERNAME,
                 PASSWORD = user.PASSWORD,
                 DOB = user.DOB,
-                ADVANCEENDDATETIME = DateTime.Now,
+                ADVANCEENDDATETIME = DateTime.Now.AddDays(50d),
                 ADVANCESTARTDATETIME = DateTime.Now
-            };*/
+            };
             PersistUser newUser = new PersistUser(null);
-            newUser.AddItem(user);
+            newUser.AddItem(advanceUser);
             newUser.SaveChange();
         }
     }
