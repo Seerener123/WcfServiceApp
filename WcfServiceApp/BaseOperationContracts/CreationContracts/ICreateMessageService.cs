@@ -13,6 +13,6 @@ namespace WcfServiceApp.BaseOperationContracts.CreationContracts
     public interface ICreateMessageService
     {
         [OperationContract]
-        void CreateMessage(UserTable user, MessageContract message);
+        void CreateMessage(MessageContract message);
     }
 }

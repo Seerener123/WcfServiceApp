@@ -10,8 +10,10 @@ namespace WcfServiceApp.Messaging.DataContracts
     public class MessageContract : IMessageContract
     {
         [DataMember]
-        public string SenderName { get; set; }
+        public string UserName { get; set; }
         [DataMember]
         public string Message { get; set; }
+        [DataMember]
+        public IList<string> EmailAccounts { get; set; }
     }
 }

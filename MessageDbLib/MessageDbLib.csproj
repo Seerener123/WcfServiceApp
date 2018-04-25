@@ -54,9 +54,9 @@
     <Compile Include="BaseDbInterfaces\IMessageTransaction.cs" />
     <Compile Include="BaseDbInterfaces\IUser.cs" />
     <Compile Include="DbContexts\MessageDbContext.cs" />
-    <Compile Include="DbPersistances\PersistMessage.cs" />
-    <Compile Include="DbPersistances\PersistMessageTransaction.cs" />
-    <Compile Include="DbPersistances\PersistUser.cs" />
+    <Compile Include="DbPersistances\MessagePersistant.cs" />
+    <Compile Include="DbPersistances\MessageTransactionPersistant.cs" />
+    <Compile Include="DbPersistances\UserPersistant.cs" />
     <Compile Include="DbRetrievals\IDbRetreive.cs" />
     <Compile Include="DbRetrievals\RetrieveUserClass.cs" />
     <Compile Include="MessagingEntities\AdvancedUser.cs" />

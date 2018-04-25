@@ -21,7 +21,7 @@ namespace WcfServiceApp.Messaging.Services
                 ADVANCEENDDATETIME = DateTime.Now.AddDays(50d),
                 ADVANCESTARTDATETIME = DateTime.Now
             };*/
-            PersistUser newUser = new PersistUser(null);
+            UserPersistant newUser = new UserPersistant(null);
             newUser.AddItem(user);
             newUser.SaveChange();
         }

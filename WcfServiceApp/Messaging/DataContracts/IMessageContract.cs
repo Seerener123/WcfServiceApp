@@ -8,7 +8,8 @@ namespace WcfServiceApp.Messaging.DataContracts
 {
     public interface IMessageContract
     {
-        string SenderName { get; set; }
+        string UserName { get; set; }
         string Message { get; set; }
+        IList<string> EmailAccounts { get; set; }
     }
 }

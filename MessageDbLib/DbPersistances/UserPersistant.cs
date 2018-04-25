@@ -1,33 +1,33 @@
-﻿using MessageDbLib.MessagingEntities;
-using MessageDbLib.DbContexts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MessageDbLib.DbContexts;
+using MessageDbLib.MessagingEntities;
 
 namespace MessageDbLib.DbPersistances
 {
-    public class PersistMessage : IDbPersistant<MessageTable>
+    public class UserPersistant : IDbPersistant<UserTable>
     {
-        private IList<MessageTable> _messages;
+        private IList<UserTable> _newUsers;
 
-        public PersistMessage(IList<MessageTable> messages)
+        public UserPersistant(IList<UserTable> newUsers)
         {
-            _messages = messages ?? new List<MessageTable>(); 
+            _newUsers = newUsers ?? new List<UserTable>();
         }
 
-        public void AddItem(MessageTable entity)
+        public void AddItem(UserTable entity)
         {
             if (entity != null)
             {
-                _messages.Add(entity);
+                _newUsers.Add(entity);
             }
         }
 
         public void SaveChange()
         {
-            if (_messages == null || _messages.Count <= 0)
+            if (_newUsers == null || _newUsers.Count <= 0)
             {
                 return;
             }
@@ -36,9 +36,9 @@ namespace MessageDbLib.DbPersistances
             {
                 using (var _dbContext = new MessageDbContext())
                 {
-                    _dbContext.MessageTables.AddRange(_messages);
+                    _dbContext.UserTables.AddRange(_newUsers);
                     _dbContext.SaveChanges();
-                    _messages.Clear();
+                    _newUsers.Clear();
                 }
             }
             catch (Exception exception)

@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace MessageDbLib.DbPersistances
 {
-    public class PersistMessageTransaction : IDbPersistant<MessageTransactionTable>
+    public class MessageTransactionPersistant : IDbPersistant<MessageTransactionTable>
     {
         private IList<MessageTransactionTable> _messageTransactions;
 
-        public PersistMessageTransaction(IList<MessageTransactionTable> messageTransactions)
+        public MessageTransactionPersistant(IList<MessageTransactionTable> messageTransactions)
         {
             _messageTransactions = messageTransactions
                 ?? new List<MessageTransactionTable>(); 
