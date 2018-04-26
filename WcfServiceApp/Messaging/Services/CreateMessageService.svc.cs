@@ -19,9 +19,8 @@ namespace WcfServiceApp.Messaging.Services
             try
             {
                 MessageTable newMessage = CreateNewMessage(message);
-                MessagePersistant messagePersistant = new MessagePersistant(null);
-                messagePersistant.AddItem(newMessage);
-                messagePersistant.SaveChange();
+                PersistMessage(newMessage);
+                CreateMessageTransaction(message, newMessage);
             }
             catch (Exception exception)
             {
@@ -36,7 +35,7 @@ namespace WcfServiceApp.Messaging.Services
             {
                 MESSAGETEXT = messageContract.Message,
                 SENDERID = user.ID,
-                MESSAGECREATED = DateTime.Now
+                MESSAGECREATED = messageContract.MessageCreated
             };
             return newMessage;
         }
@@ -50,6 +49,40 @@ namespace WcfServiceApp.Messaging.Services
                 throw new Exception();
             }
             return user;
+        }
+
+        private void PersistMessage(MessageTable message)
+        {
+            MessagePersistant messagePersistant = new MessagePersistant(null);
+            messagePersistant.AddItem(message);
+            messagePersistant.SaveChange();
+        }
+
+        private void CreateMessageTransaction(IMessageContract messageContract, 
+            MessageTable message)
+        {
+            List<MessageTransactionTable> messageTransactions = new 
+                List<MessageTransactionTable>();
+            
+            foreach (var emailAddress in messageContract.EmailAccounts)
+            {
+                var messageTransaction = new MessageTransactionTable
+                {
+                    EMAILADDRESS = emailAddress,
+                    MESSAGEID = message.ID,
+                    MESSAGERECEIVED = false
+                };
+                messageTransactions.Add(messageTransaction);
+            }
+
+            PersistMessageTransaction(messageTransactions);
+        }
+
+        private void PersistMessageTransaction(List<MessageTransactionTable> messageTransactions)
+        {
+            MessageTransactionPersistant transactionPersistant = new
+                MessageTransactionPersistant(messageTransactions);
+            transactionPersistant.SaveChange();
         }
     }
 }

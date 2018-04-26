@@ -15,5 +15,7 @@ namespace WcfServiceApp.Messaging.DataContracts
         public string Message { get; set; }
         [DataMember]
         public IList<string> EmailAccounts { get; set; }
+        [DataMember]
+        public DateTime MessageCreated { get; set; }
     }
 }
