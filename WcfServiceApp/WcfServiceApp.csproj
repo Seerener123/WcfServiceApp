@@ -76,6 +76,8 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\Datacontacts\EntityErrorContract.cs" />
+    <Compile Include="Exceptions\Datacontacts\IErrorsContract.cs" />
     <Compile Include="Messaging\DataContracts\IMessageContract.cs" />
     <Compile Include="Messaging\DataContracts\MessageContract.cs" />
     <Compile Include="Messaging\Services\CreateMessageService.svc.cs">

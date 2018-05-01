@@ -13,6 +13,6 @@ namespace WcfServiceApp.Messaging.Services
     public interface ICreateUserService
     {
         [OperationContract]
-        void PersistNewUser(UserTable user);
+        void CreateNewUser(UserTable user);
     }
 }

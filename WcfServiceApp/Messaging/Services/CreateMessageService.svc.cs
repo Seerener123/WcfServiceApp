@@ -8,6 +8,7 @@ using MessageDbLib.DbPersistances;
 using MessageDbLib.DbRetrievals;
 using MessageDbLib.MessagingEntities;
 using WcfServiceApp.BaseOperationContracts.CreationContracts;
+using WcfServiceApp.Exceptions.Datacontacts;
 using WcfServiceApp.Messaging.DataContracts;
 
 namespace WcfServiceApp.Messaging.Services
@@ -24,7 +25,7 @@ namespace WcfServiceApp.Messaging.Services
             }
             catch (Exception exception)
             {
-                //
+                RerouteErrorMessage(exception.Message);
             }
         }
 
@@ -83,6 +84,15 @@ namespace WcfServiceApp.Messaging.Services
             MessageTransactionPersistant transactionPersistant = new
                 MessageTransactionPersistant(messageTransactions);
             transactionPersistant.SaveChange();
+        }
+
+        private void RerouteErrorMessage(string message)
+        {
+            var error = new EntityErrorContract
+            {
+                Message = message
+            };
+            throw new FaultException<EntityErrorContract>(error);
         }
     }
 }

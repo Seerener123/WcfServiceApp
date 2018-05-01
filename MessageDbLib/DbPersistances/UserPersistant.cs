@@ -43,7 +43,7 @@ namespace MessageDbLib.DbPersistances
             }
             catch (Exception exception)
             {
-                //
+                // logging here
             }
         }
     }

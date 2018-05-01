@@ -6,12 +6,13 @@ using System.ServiceModel;
 using System.Text;
 using MessageDbLib.DbPersistances;
 using MessageDbLib.MessagingEntities;
+using WcfServiceApp.Exceptions.Datacontacts;
 
 namespace WcfServiceApp.Messaging.Services
 {
     public class CreateUserService : ICreateUserService
     {
-        public void PersistNewUser(UserTable user)
+        public void CreateNewUser(UserTable user)
         {
             /*var advanceUser = new AdvancedUser()
             {
@@ -21,9 +22,31 @@ namespace WcfServiceApp.Messaging.Services
                 ADVANCEENDDATETIME = DateTime.Now.AddDays(50d),
                 ADVANCESTARTDATETIME = DateTime.Now
             };*/
+            
+            try
+            {
+                PersistNewUser(user);
+            }
+            catch (Exception exception)
+            {
+                ThrowErrorMessage(exception.Message);
+            }
+        }
+
+        private void PersistNewUser(UserTable user)
+        {
             UserPersistant newUser = new UserPersistant(null);
             newUser.AddItem(user);
             newUser.SaveChange();
+        }
+
+        private void ThrowErrorMessage(string message)
+        {
+            var error = new EntityErrorContract
+            {
+                Message = message
+            };
+            throw new FaultException<EntityErrorContract>(error);
         }
     }
 }
