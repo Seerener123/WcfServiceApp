@@ -25,7 +25,8 @@ namespace MessageDbLib.MessagingEntities
         public DateTime? MESSAGECREATED { get; set; }
 
         [DataMember(Name = "User")]
-        public virtual IUser User { get; set; }
+        [ForeignKey("SENDERID")]
+        public virtual UserTable User { get; set; }
 
         //[DataMember]
         //public virtual UserTable User { get; set; }

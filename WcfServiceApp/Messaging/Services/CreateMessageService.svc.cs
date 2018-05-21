@@ -4,12 +4,14 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using MessageDbLib.DbContexts;
 using MessageDbLib.DbPersistances;
 using MessageDbLib.DbRetrievals;
 using MessageDbLib.MessagingEntities;
 using WcfServiceApp.BaseOperationContracts.CreationContracts;
 using WcfServiceApp.Exceptions.Datacontacts;
 using WcfServiceApp.Messaging.DataContracts;
+using System.Data.Entity;
 
 namespace WcfServiceApp.Messaging.Services
 {
@@ -19,6 +21,12 @@ namespace WcfServiceApp.Messaging.Services
         {
             try
             {
+                using (var _dbcontext = new MessageDbContext())
+                {
+                    var messages = _dbcontext.MessageTables
+                        .Include(m => m.User)
+                        .ToList();
+                }
                 MessageTable newMessage = CreateNewMessage(message);
                 PersistMessage(newMessage);
                 CreateMessageTransaction(message, newMessage);
