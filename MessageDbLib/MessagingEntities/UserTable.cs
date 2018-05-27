@@ -25,9 +25,21 @@ namespace MessageDbLib.MessagingEntities
         [DataMember(Name = "PASSWORD")]
         public string PASSWORD { get; set; }
 
+        [StringLength(100)]
+        [DataMember(Name = "FIRSTNAME")]
+        public string FIRSTNAME { get; set; }
+
+        [StringLength(100)]
+        [DataMember(Name = "SURNAME")]
+        public string SURNAME { get; set; }
+
         [Required]
         [DataMember(Name = "DOB")]
         public DateTime? DOB { get; set; }
+
+        [StringLength(6)]
+        [DataMember(Name = "GENDER")]
+        public string GENDER { get; set; }
 
         //[DataMember(Name = "Messages")]
         //public ICollection<MessageTable> Messages { get; set; }

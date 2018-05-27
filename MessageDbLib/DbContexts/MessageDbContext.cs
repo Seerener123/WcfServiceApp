@@ -31,6 +31,8 @@ namespace MessageDbLib.DbContexts
         private void UserTableDiscriminatorConfig(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UserTable>()
+                .Map<UserTable>(u => u.Requires("ISADVANCEDUSER").HasValue(false));
+            modelBuilder.Entity<UserTable>()
                 .Map<AdvancedUser>(au => au.Requires("ISADVANCEDUSER").HasValue(true));
         }
 

@@ -14,5 +14,8 @@ namespace WcfServiceApp.Messaging.Services
     {
         [OperationContract]
         void CreateNewUser(UserTable user);
+
+        [OperationContract]
+        void CreateNewAdvancedUser(AdvancedUser user);
     }
 }

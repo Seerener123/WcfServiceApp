@@ -12,6 +12,18 @@ namespace WcfServiceApp.Messaging.Services
 {
     public class CreateUserService : ICreateUserService
     {
+        public void CreateNewAdvancedUser(AdvancedUser user)
+        {
+            try
+            {
+                PersistNewUser(user);
+            }
+            catch (Exception exception)
+            {
+                ThrowErrorMessage(exception.Message);
+            }
+        }
+
         public void CreateNewUser(UserTable user)
         {
             /*var advanceUser = new AdvancedUser()

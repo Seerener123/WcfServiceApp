@@ -12,6 +12,12 @@ namespace MessageDbLib.BaseDbInterfaces
 
         string PASSWORD { get; set; }
 
+        string FIRSTNAME { get; set; }
+
+        string SURNAME { get; set; }
+
         DateTime? DOB { get; set; }
+
+        string GENDER { get; set; }
     }
 }
