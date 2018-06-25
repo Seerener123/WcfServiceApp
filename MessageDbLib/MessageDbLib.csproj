@@ -54,11 +54,14 @@
     <Compile Include="BaseDbInterfaces\IMessageTransaction.cs" />
     <Compile Include="BaseDbInterfaces\IUser.cs" />
     <Compile Include="DbContexts\MessageDbContext.cs" />
+    <Compile Include="DbDeletions\IDbDeletion.cs" />
     <Compile Include="DbPersistances\MessagePersistant.cs" />
     <Compile Include="DbPersistances\MessageTransactionPersistant.cs" />
     <Compile Include="DbPersistances\UserPersistant.cs" />
     <Compile Include="DbRetrievals\IDbRetreive.cs" />
     <Compile Include="DbRetrievals\RetrieveUserClass.cs" />
+    <Compile Include="DbUpdates\IDbUpdate.cs" />
+    <Compile Include="DbUpdates\UpdateUser.cs" />
     <Compile Include="MessagingEntities\AdvancedUser.cs" />
     <Compile Include="MessagingEntities\MessageTable.cs" />
     <Compile Include="MessagingEntities\MessageTransactionTable.cs" />
@@ -70,10 +73,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DbDeletions\" />
-    <Folder Include="DbUpdates\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="MessagingEntities\TableInheritance.txt" />
   </ItemGroup>

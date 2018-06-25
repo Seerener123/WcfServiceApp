@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MessageDbLib.DbPersistances
+namespace MessageDbLib.DbUpdates
 {
-    public interface IDbPersistant<TEntity> where TEntity : IBaseEntity
+    public interface IDbUpdate<TEntity> where TEntity : IBaseEntity
     {
         void AddToPending(TEntity entity);
         void RemoveFromPending(TEntity entity);
-        void SaveChange();
+        void UpdateChange();
     }
 }

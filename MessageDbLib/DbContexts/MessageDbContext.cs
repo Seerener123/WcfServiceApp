@@ -25,15 +25,18 @@ namespace MessageDbLib.DbContexts
         }
 
         /* Fluent Api, is an api that is part of the entity
-         * which allows us configure the domain (entity)
+         * which allows us to configure the domain (entity)
          * class in the datacontext.
          * */
         private void UserTableDiscriminatorConfig(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UserTable>()
-                .Map<UserTable>(u => u.Requires("ISADVANCEDUSER").HasValue(false));
+                .Map<UserTable>(u => u.Requires("ISADVANCEDUSER")
+                .HasValue(false));
+
             modelBuilder.Entity<UserTable>()
-                .Map<AdvancedUser>(au => au.Requires("ISADVANCEDUSER").HasValue(true));
+                .Map<AdvancedUser>(au => au.Requires("ISADVANCEDUSER")
+                .HasValue(true));
         }
 
         /*private void dump()

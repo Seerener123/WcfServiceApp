@@ -14,11 +14,11 @@ namespace MessageDbLib.DbPersistances
 
         public MessageTransactionPersistant(IList<MessageTransactionTable> messageTransactions)
         {
-            _messageTransactions = messageTransactions
-                ?? new List<MessageTransactionTable>(); 
+            _messageTransactions = messageTransactions ?? 
+                new List<MessageTransactionTable>(); 
         }
 
-        public void AddItem(MessageTransactionTable entity)
+        public void AddToPending(MessageTransactionTable entity)
         {
             _messageTransactions.Add(entity);
         }

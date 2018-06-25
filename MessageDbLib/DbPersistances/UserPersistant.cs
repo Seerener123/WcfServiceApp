@@ -17,7 +17,7 @@ namespace MessageDbLib.DbPersistances
             _newUsers = newUsers ?? new List<UserTable>();
         }
 
-        public void AddItem(UserTable entity)
+        public void AddToPending(UserTable entity)
         {
             if (entity != null)
             {

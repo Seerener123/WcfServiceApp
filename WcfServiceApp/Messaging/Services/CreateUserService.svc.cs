@@ -48,7 +48,7 @@ namespace WcfServiceApp.Messaging.Services
         private void PersistNewUser(UserTable user)
         {
             UserPersistant newUser = new UserPersistant(null);
-            newUser.AddItem(user);
+            newUser.AddToPending(user);
             newUser.SaveChange();
         }
 

@@ -63,7 +63,7 @@ namespace WcfServiceApp.Messaging.Services
         private void PersistMessage(MessageTable message)
         {
             MessagePersistant messagePersistant = new MessagePersistant(null);
-            messagePersistant.AddItem(message);
+            messagePersistant.AddToPending(message);
             messagePersistant.SaveChange();
         }
 

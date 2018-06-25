@@ -17,20 +17,46 @@ namespace MessageDbLib.DbPersistances
             _messages = messages ?? new List<MessageTable>(); 
         }
 
-        public void AddItem(MessageTable entity)
+        private void CheckingEntityValidity(MessageTable entity)
         {
-            if (entity != null)
+            if (entity == null)
             {
-                _messages.Add(entity);
+                var message = "Entity value is null, thus operation is considered invalid";
+                throw new InvalidOperationException(message);
+            }
+        }
+
+        public void AddToPending(MessageTable entity)
+        {
+            CheckingEntityValidity(entity);
+            _messages.Add(entity);
+        }
+
+        private void CheckingInternalCollectionValidity()
+        {
+            if (_messages == null || _messages.Count <= 0)
+            {
+                var collectionNull = _messages == null;
+                var state = collectionNull ? "null" : "empty";
+                var message = string.Format("Internal pending collection is {0}", state);
+                throw new InvalidOperationException(message);
+            }
+        }
+
+        public void RemoveFromPending(MessageTable entity)
+        {
+            CheckingInternalCollectionValidity();
+            CheckingEntityValidity(entity);
+
+            if (_messages.Any(m => m.Equals(entity)))
+            {
+                _messages.Remove(entity);
             }
         }
 
         public void SaveChange()
         {
-            if (_messages == null || _messages.Count <= 0)
-            {
-                return;
-            }
+            CheckingInternalCollectionValidity();
 
             try
             {
@@ -43,7 +69,7 @@ namespace MessageDbLib.DbPersistances
             }
             catch (Exception exception)
             {
-                //
+                throw;
             }
         }
     }
