@@ -23,8 +23,7 @@ namespace WcfServiceApp.Messaging.Services
             {
                 using (var _dbcontext = new MessageDbContext())
                 {
-                    var messages = _dbcontext.MessageTables
-                        .Include(m => m.User)
+                    var messages = _dbcontext.MessageTables.Include(m => m.User)
                         .ToList();
                 }
                 MessageTable newMessage = CreateNewMessage(message);
@@ -70,8 +69,7 @@ namespace WcfServiceApp.Messaging.Services
         private void CreateMessageTransaction(IMessageContract messageContract, 
             MessageTable message)
         {
-            List<MessageTransactionTable> messageTransactions = new 
-                List<MessageTransactionTable>();
+            List<MessageTransactionTable> messageTransactions = new List<MessageTransactionTable>();
             
             foreach (var emailAddress in messageContract.EmailAccounts)
             {
@@ -89,8 +87,7 @@ namespace WcfServiceApp.Messaging.Services
 
         private void PersistMessageTransaction(List<MessageTransactionTable> messageTransactions)
         {
-            MessageTransactionPersistant transactionPersistant = new
-                MessageTransactionPersistant(messageTransactions);
+            MessageTransactionPersistant transactionPersistant = new MessageTransactionPersistant(messageTransactions);
             transactionPersistant.SaveChange();
         }
 

@@ -14,14 +14,15 @@ namespace MessageDbLib.DbPersistances
 
         public MessagePersistant(IList<MessageTable> messages)
         {
-            _messages = messages ?? new List<MessageTable>(); 
+            _messages = messages != null ? new List<MessageTable>(messages) :
+                new List<MessageTable>();
         }
 
         private void CheckingEntityValidity(MessageTable entity)
         {
             if (entity == null)
             {
-                var message = "Entity value is null, thus operation is considered invalid";
+                var message = "Entity value is null, thus operation is invalid";
                 throw new InvalidOperationException(message);
             }
         }
@@ -45,8 +46,8 @@ namespace MessageDbLib.DbPersistances
 
         public void RemoveFromPending(MessageTable entity)
         {
-            CheckingInternalCollectionValidity();
             CheckingEntityValidity(entity);
+            CheckingInternalCollectionValidity();
 
             if (_messages.Any(m => m.Equals(entity)))
             {

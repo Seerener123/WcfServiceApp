@@ -14,7 +14,8 @@ namespace MessageDbLib.DbPersistances
 
         public UserPersistant(IList<UserTable> newUsers)
         {
-            _newUsers = newUsers ?? new List<UserTable>();
+            /// TODO Implement the userperistant
+            _newUsers = newUsers != null ? new List<UserTable>(newUsers) : new List<UserTable>();
         }
 
         public void AddToPending(UserTable entity)
@@ -23,6 +24,11 @@ namespace MessageDbLib.DbPersistances
             {
                 _newUsers.Add(entity);
             }
+        }
+
+        public void RemoveFromPending(UserTable entity)
+        {
+            throw new NotImplementedException();
         }
 
         public void SaveChange()
@@ -43,7 +49,7 @@ namespace MessageDbLib.DbPersistances
             }
             catch (Exception exception)
             {
-                // logging here
+                throw;
             }
         }
     }
