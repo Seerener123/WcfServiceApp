@@ -14,29 +14,49 @@ namespace MessageDbLib.DbPersistances
 
         public UserPersistant(IList<UserTable> newUsers)
         {
-            /// TODO Implement the userperistant
             _newUsers = newUsers != null ? new List<UserTable>(newUsers) : new List<UserTable>();
+        }
+
+        private void CheckingEntityValidity(UserTable entity)
+        {
+            if (entity == null)
+            {
+                var message = "Entity value is null, thus operation is invalid";
+                throw new InvalidOperationException(message);
+            }
         }
 
         public void AddToPending(UserTable entity)
         {
-            if (entity != null)
+            CheckingEntityValidity(entity);
+            _newUsers.Add(entity);
+        }
+
+        private void CheckingInternalCollectionValidity()
+        {
+            if (_newUsers == null || _newUsers.Count <= 0)
             {
-                _newUsers.Add(entity);
+                var collectionNull = _newUsers == null;
+                var state = collectionNull ? "null" : "empty";
+                var message = string.Format("Internal pending collection is {0}", state);
+                throw new InvalidOperationException(message);
             }
         }
 
         public void RemoveFromPending(UserTable entity)
         {
-            throw new NotImplementedException();
+            CheckingEntityValidity(entity);
+            CheckingInternalCollectionValidity();
+
+            if (_newUsers.Any(m => m.Equals(entity)))
+            {
+                _newUsers.Remove(entity);
+            }
         }
 
         public void SaveChange()
         {
-            if (_newUsers == null || _newUsers.Count <= 0)
-            {
-                return;
-            }
+            CheckingInternalCollectionValidity();
 
             try
             {

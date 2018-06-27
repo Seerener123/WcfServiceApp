@@ -21,6 +21,11 @@ namespace WcfServiceApp.Messaging.Services
         {
             try
             {
+                if (message.EmailAccounts == null || message.EmailAccounts.Count <= 0)
+                {
+                    throw new InvalidOperationException("Message contract does not have ant emails attahed.");
+                }
+
                 using (var _dbcontext = new MessageDbContext())
                 {
                     var messages = _dbcontext.MessageTables.Include(m => m.User)
