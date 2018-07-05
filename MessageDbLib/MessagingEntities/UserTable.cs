@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 
 namespace MessageDbLib.MessagingEntities
 {
-    [Table("UserTable")]
+    //[Table("UserTable")]
     [DataContract(Name = "UserTable")]
     public class UserTable : IUser
     {
@@ -33,7 +33,7 @@ namespace MessageDbLib.MessagingEntities
         [DataMember(Name = "SURNAME")]
         public string SURNAME { get; set; }
 
-        [Required]
+        //[Required]
         [DataMember(Name = "DOB")]
         public DateTime? DOB { get; set; }
 
@@ -41,12 +41,12 @@ namespace MessageDbLib.MessagingEntities
         [DataMember(Name = "GENDER")]
         public string GENDER { get; set; }
 
-        //[DataMember(Name = "Messages")]
-        //public ICollection<MessageTable> Messages { get; set; }
+        [DataMember(Name = "Messages")]
+        public ICollection<MessageTable> Messages { get; set; }
 
         public UserTable()
         {
-            //Messages = new HashSet<MessageTable>();
+            Messages = new HashSet<MessageTable>();
         }
     }
 }

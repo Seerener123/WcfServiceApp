@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 
 namespace MessageDbLib.MessagingEntities
 {
-    [Table("MessageTable", Schema = "messagedbo")]
+    //[Table("MessageTable", Schema = "messagedbo")]
     [DataContract(Name = "MessageTable")]
     public class MessageTable : IMessage
     {
@@ -24,11 +24,16 @@ namespace MessageDbLib.MessagingEntities
         [DataMember(Name = "MESSAGECREATED")]
         public DateTime? MESSAGECREATED { get; set; }
 
+        //[ForeignKey("SENDERID")]
         [DataMember(Name = "User")]
-        [ForeignKey("SENDERID")]
         public virtual UserTable User { get; set; }
 
-        //[DataMember]
-        //public virtual UserTable User { get; set; }
+        [DataMember(Name = "MessageTransactions")]
+        public ICollection<MessageTransactionTable> MessageTransactions { get; set; }
+
+        public MessageTable()
+        {
+            MessageTransactions = new HashSet<MessageTransactionTable>();
+        }
     }
 }
