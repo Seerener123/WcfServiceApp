@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MessageDbLib.DbContextFactorys;
 using MessageDbLib.DbContexts;
 using MessageDbLib.MessagingEntities;
 
@@ -10,10 +11,12 @@ namespace MessageDbLib.DbPersistances
 {
     public class UserPersistant : IDbPersistant<UserTable>
     {
+        private readonly string _dbContextType;
         private IList<UserTable> _newUsers;
 
-        public UserPersistant(IList<UserTable> newUsers)
+        public UserPersistant(IList<UserTable> newUsers, string dbContextType)
         {
+            _dbContextType = dbContextType;
             _newUsers = newUsers != null ? new List<UserTable>(newUsers) : new List<UserTable>();
         }
 
@@ -60,7 +63,7 @@ namespace MessageDbLib.DbPersistances
 
             try
             {
-                using (var _dbContext = new MessageDbContext())
+                using (var _dbContext = UserDbFactory.GetUserDbContext(_dbContextType))
                 {
                     _dbContext.UserTables.AddRange(_newUsers);
                     _dbContext.SaveChanges();

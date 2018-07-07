@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace MessageDbLib.DbContexts
 {
-    public class MessageDbContext : MessageAbstractDbContext
+    public class UserDbContext : UserAbstractDbContext
     {
-        public MessageDbContext() : base("name=MessageDbContext")
+        public UserDbContext() : base("name=MessageDbContext")
         {
             base.Configuration.ProxyCreationEnabled = false;
         }
@@ -20,10 +20,7 @@ namespace MessageDbLib.DbContexts
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             //MapUserToTable(modelBuilder);
-            MapMessageToTable(modelBuilder);
-
             UserTableConfiguration(modelBuilder);
-            MessageTableConfigureation(modelBuilder);
             UserTableDiscriminatorConfig(modelBuilder);
         }
 
@@ -48,40 +45,8 @@ namespace MessageDbLib.DbContexts
 
             modelBuilder.Entity<UserTable>().Property(e => e.GENDER)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<UserTable>().HasMany(e => e.Messages).WithOptional(e => e.User)
-                .HasForeignKey(e => e.SENDERID);
         }
 
-        private void MapMessageToTable(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<MessageTable>().ToTable("MessageTable", "messagedbo");
-        }
-
-        private void MessageTableConfigureation(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<MessageTable>().Property(e => e.MESSAGETEXT)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<MessageTable>().HasMany(e => e.MessageTransactions).WithOptional(e => e.Message)
-                .HasForeignKey(e => e.MESSAGEID);
-        }
-
-        private void MapMessageTransactionToTable(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<MessageTransactionTable>().ToTable("MessageTransactionTable", "messagedbo");
-        }
-
-        private void MessageTransactionTableConfigureation(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<MessageTransactionTable>().Property(e => e.EMAILADDRESS)
-                .IsUnicode(false);
-        }
-
-        /* Fluent Api, is an api that is part of the entity
-         * which allows us to configure the domain (entity)
-         * class in the datacontext.
-         * */
         private void UserTableDiscriminatorConfig(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UserTable>().Map<UserTable>(u => u.Requires("ISADVANCEDUSER")

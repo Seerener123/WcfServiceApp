@@ -53,7 +53,13 @@
     <Compile Include="BaseDbInterfaces\IMessage.cs" />
     <Compile Include="BaseDbInterfaces\IMessageTransaction.cs" />
     <Compile Include="BaseDbInterfaces\IUser.cs" />
+    <Compile Include="Constants\UserDataConstants.cs" />
+    <Compile Include="Constants\UserDbContextConstant.cs" />
+    <Compile Include="DbContextFactorys\UserDbFactory.cs" />
+    <Compile Include="DbContexts\MessageAbstractDbContext.cs" />
     <Compile Include="DbContexts\MessageDbContext.cs" />
+    <Compile Include="DbContexts\UserAbstractDbContext.cs" />
+    <Compile Include="DbContexts\UserDbContext.cs" />
     <Compile Include="DbDeletions\IDbDeletion.cs" />
     <Compile Include="DbPersistances\MessagePersistant.cs" />
     <Compile Include="DbPersistances\MessageTransactionPersistant.cs" />

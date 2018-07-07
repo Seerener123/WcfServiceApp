@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using MessageDbLib.Constants;
 using MessageDbLib.DbPersistances;
 using MessageDbLib.MessagingEntities;
 using WcfServiceApp.Exceptions.Datacontacts;
@@ -47,7 +48,7 @@ namespace WcfServiceApp.Messaging.Services
 
         private void PersistNewUser(UserTable user)
         {
-            UserPersistant newUser = new UserPersistant(null);
+            UserPersistant newUser = new UserPersistant(null, UserDbContextConstant.MsSqlUserDbContext);
             newUser.AddToPending(user);
             newUser.SaveChange();
         }
