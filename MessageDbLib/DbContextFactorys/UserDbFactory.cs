@@ -15,7 +15,13 @@ namespace MessageDbLib.DbContextFactorys
             switch (dbcontextOption)
             {
                 case UserDbContextConstant.MsSqlUserDbContext:
-                    return new UserDbContext();
+                    {
+                        return new UserDbContext();
+                    }
+                case UserDbContextConstant.MySqlUserDbContext:
+                    {
+                        return new UserMySqlDbContext();
+                    }
                 default:
                     throw new InvalidOperationException("Select");
             }

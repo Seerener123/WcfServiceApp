@@ -63,7 +63,7 @@ namespace MessageDbLibTest.PersistTest
         #endregion
 
         [TestMethod]
-        public void CreateMessageMsSql()
+        public void CreateUserMsSql()
         {
             Random randomNumber = new Random();
             string firstName = "UnitTestOne" + randomNumber.Next(1000000);
@@ -79,8 +79,21 @@ namespace MessageDbLibTest.PersistTest
                 PASSWORD = "password" + firstName + "_" + secondName
             };
 
+            AdvancedUser advancedUser = new AdvancedUser()
+            {
+                FIRSTNAME = "advance " + firstName,
+                SURNAME = "advance " + secondName,
+                DOB = DateTime.Now,
+                GENDER = UserDataConstants.Male,
+                USERNAME = "advance " + firstName + "_" + secondName,
+                PASSWORD = "password" + firstName + "_" + secondName,
+                ADVANCESTARTDATETIME = DateTime.Now,
+                ADVANCEENDDATETIME = DateTime.Now.AddDays(50)
+            };
+
             UserPersistant createUser = new UserPersistant(null, UserDbContextConstant.MsSqlUserDbContext);
             createUser.AddToPending(user);
+            createUser.AddToPending(advancedUser);
             createUser.SaveChange();
         }
     }

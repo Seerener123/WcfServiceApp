@@ -90,5 +90,7 @@ namespace MessageDbLib.DbContexts
             modelBuilder.Entity<UserTable>().Map<AdvancedUser>(au => au.Requires("ISADVANCEDUSER")
                 .HasValue(true));
         }
+
+        // https://social.msdn.microsoft.com/Forums/en-US/b70d1b99-410b-4bfc-be85-675fe3652e72/problem-using-tph-discriminators-with-code-first-migrations-in-ef-43?forum=adodotnetentityframework
     }
 }

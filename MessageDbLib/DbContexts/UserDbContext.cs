@@ -18,15 +18,22 @@ namespace MessageDbLib.DbContexts
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            //MapUserToTable(modelBuilder);
             UserTableConfiguration(modelBuilder);
             UserTableDiscriminatorConfig(modelBuilder);
-        }
 
-        private void MapUserToTable(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<UserTable>().ToTable("UserTable", "dbo");
+            /* When mapping an entity class to a table in the database using fluent api, make 
+             * sure that the ToTable() function is invoked at the end of all the mapping 
+             * configuration.
+             * 
+             * If it's not done this way, when we are configuring the descriminator, EF will throw
+             * an invalid exception, saying that this user type is already mapped.
+             * */
+            MapUserToTable(modelBuilder);
+
+            /* The link below, section Mapping Multiple Entity Types to One Table in the Database (Table Splitting)
+             * demonstrates using Totable() propery.
+             * https://msdn.microsoft.com/en-us/library/jj591617(v=vs.113).aspx
+             * */
         }
 
         private void UserTableConfiguration(DbModelBuilder modelBuilder)
@@ -54,6 +61,16 @@ namespace MessageDbLib.DbContexts
 
             modelBuilder.Entity<UserTable>().Map<AdvancedUser>(au => au.Requires("ISADVANCEDUSER")
                 .HasValue(true));
+
+            /*modelBuilder.Entity<UserTable>()
+                .Map<UserTable>(u => u.Requires("ISADVANCEDUSER").HasValue(false))
+                .Map<AdvancedUser>(au => au.Requires("ISADVANCEDUSER").HasValue(true));*/
+        }
+
+        private void MapUserToTable(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<UserTable>().ToTable("UserTable", "dbo");
+            // modelBuilder.Entity<UserTable>().ToTable("UserTable1", "messagedbo");
         }
     }
 }
