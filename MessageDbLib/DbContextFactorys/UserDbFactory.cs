@@ -23,7 +23,7 @@ namespace MessageDbLib.DbContextFactorys
                         return new UserMySqlDbContext();
                     }
                 default:
-                    throw new InvalidOperationException("Select");
+                    throw new InvalidOperationException("UserDbConext option does not exist in the user factory options.");
             }
         }
     }

@@ -63,38 +63,39 @@ namespace MessageDbLibTest.PersistTest
         #endregion
 
         [TestMethod]
-        public void CreateUserMsSql()
+        public void CreateMessageMsSql()
         {
             Random randomNumber = new Random();
-            string firstName = "UnitTestOne" + randomNumber.Next(1000000);
-            string secondName = "UnitTestMsql" + randomNumber.Next(1000000);
+            string messagetext = "Unit test message. Hello for the " + randomNumber.Next(1000000) + " time.";
 
-            UserTable user = new UserTable()
+            MessageTable message = new MessageTable()
             {
-                FIRSTNAME = firstName,
-                SURNAME = secondName,
-                DOB = DateTime.Now,
-                GENDER = UserDataConstants.Male,
-                USERNAME = firstName + "_" + secondName,
-                PASSWORD = "password" + firstName + "_" + secondName
+                MESSAGETEXT = messagetext,
+                MESSAGECREATED = DateTime.Now,
+                SENDERID = 1
             };
 
-            AdvancedUser advancedUser = new AdvancedUser()
+            MessagePersistant createMessage = new MessagePersistant(null, MessageDbContextConstant.MsSqlMessageDbContext);
+            createMessage.AddToPending(message);
+            createMessage.SaveChange();
+        }
+
+        [TestMethod]
+        public void CreateMessageMYSql()
+        {
+            Random randomNumber = new Random();
+            string messagetext = "Unit test message. Hello for the " + randomNumber.Next(1000000) + " time.";
+
+            MessageTable message = new MessageTable()
             {
-                FIRSTNAME = "advance " + firstName,
-                SURNAME = "advance " + secondName,
-                DOB = DateTime.Now,
-                GENDER = UserDataConstants.Male,
-                USERNAME = "advance " + firstName + "_" + secondName,
-                PASSWORD = "password" + firstName + "_" + secondName,
-                ADVANCESTARTDATETIME = DateTime.Now,
-                ADVANCEENDDATETIME = DateTime.Now.AddDays(50)
+                MESSAGETEXT = messagetext,
+                MESSAGECREATED = DateTime.Now,
+                SENDERID = 1
             };
 
-            UserPersistant createUser = new UserPersistant(null, UserDbContextConstant.MsSqlUserDbContext);
-            createUser.AddToPending(user);
-            createUser.AddToPending(advancedUser);
-            createUser.SaveChange();
+            MessagePersistant createMessage = new MessagePersistant(null, MessageDbContextConstant.MySqlMessageDbContext);
+            createMessage.AddToPending(message);
+            createMessage.SaveChange();
         }
     }
 }

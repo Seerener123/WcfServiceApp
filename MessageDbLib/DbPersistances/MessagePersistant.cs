@@ -5,17 +5,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MessageDbLib.DbContextFactorys;
 
 namespace MessageDbLib.DbPersistances
 {
     public class MessagePersistant : IDbPersistant<MessageTable>
     {
+        private readonly string _dbContextType;
         private IList<MessageTable> _messages;
 
-        public MessagePersistant(IList<MessageTable> messages)
+        public MessagePersistant(IList<MessageTable> messages, string dbContextType)
         {
-            _messages = messages != null ? new List<MessageTable>(messages) :
-                new List<MessageTable>();
+            _dbContextType = dbContextType;
+            _messages = messages != null ? new List<MessageTable>(messages) : new List<MessageTable>();
         }
 
         private void CheckingEntityValidity(MessageTable entity)
@@ -61,7 +63,7 @@ namespace MessageDbLib.DbPersistances
 
             try
             {
-                using (var _dbContext = new MessageDbContext())
+                using (var _dbContext = MessageDbFactory.GetMessageDbContext(_dbContextType))
                 {
                     _dbContext.MessageTables.AddRange(_messages);
                     _dbContext.SaveChanges();

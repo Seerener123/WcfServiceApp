@@ -12,6 +12,7 @@ using WcfServiceApp.BaseOperationContracts.CreationContracts;
 using WcfServiceApp.Exceptions.Datacontacts;
 using WcfServiceApp.Messaging.DataContracts;
 using System.Data.Entity;
+using MessageDbLib.Constants;
 
 namespace WcfServiceApp.Messaging.Services
 {
@@ -66,7 +67,7 @@ namespace WcfServiceApp.Messaging.Services
 
         private void PersistMessage(MessageTable message)
         {
-            MessagePersistant messagePersistant = new MessagePersistant(null);
+            MessagePersistant messagePersistant = new MessagePersistant(null, MessageDbContextConstant.MsSqlMessageDbContext);
             messagePersistant.AddToPending(message);
             messagePersistant.SaveChange();
         }
