@@ -1,5 +1,5 @@
 ﻿using MessageDbLib.MessagingEntities;
-using MySql.Data.Entity;
+//using MySql.Data.Entity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace MessageDbLib.DbContexts
 {
-    [DbConfigurationType(typeof(MySqlEFConfiguration))]
+    //[DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class UserMySqlDbContext : UserAbstractDbContext
     {
         public UserMySqlDbContext() : base("name=MessageMySQLDbContext")
         {
-
+            //
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

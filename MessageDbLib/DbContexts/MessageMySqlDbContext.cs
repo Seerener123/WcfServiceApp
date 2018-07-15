@@ -1,4 +1,6 @@
 ﻿using MessageDbLib.MessagingEntities;
+using MySql.Data.EntityFramework;
+//using MySql.Data.Entity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -6,10 +8,16 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MySql.Data.Entity;
 
 namespace MessageDbLib.DbContexts
 {
+    /* We were getting error with the dbcontext not connecting to our mysql db on our virtual machine.
+     * This is because MySql.Data.Entity 6.10.7 isn't compatible with MySql.Data 8.0.11.
+     * To rsolve this issue, we are db-configuration-type from mysql.data.entityframework.
+     * 
+     * https://stackoverflow.com/questions/50216643/error-attempt-by-method-x-set-dbconnectionsystem-data-common-dbconnection-to
+     * */
+
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class MessageMySqlDbContext : MessageAbstractDbContext
     {
@@ -20,72 +28,21 @@ namespace MessageDbLib.DbContexts
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            UserTableConfiguration(modelBuilder);
+            modelBuilder.Ignore<UserTable>();
+            modelBuilder.Ignore<MessageTransactionTable>();
             MessageTableConfigureation(modelBuilder);
-            UserTableDiscriminatorConfig(modelBuilder);
-
-            MapUserToTable(modelBuilder);
             MapMessageToTable(modelBuilder);
-        }
-
-        private void MapUserToTable(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<UserTable>().ToTable("UserTable", "wcfMessaging");
-        }
-
-        private void UserTableConfiguration(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<UserTable>().Property(e => e.USERNAME)
-               .IsUnicode(false);
-
-            modelBuilder.Entity<UserTable>().Property(e => e.PASSWORD)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<UserTable>().Property(e => e.FIRSTNAME)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<UserTable>().Property(e => e.SURNAME)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<UserTable>().Property(e => e.GENDER)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<UserTable>().HasMany(e => e.Messages).WithOptional(e => e.User)
-                .HasForeignKey(e => e.SENDERID);
         }
 
         private void MapMessageToTable(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<MessageTable>().ToTable("MessageTable", "wcfMessaging");
+            modelBuilder.Entity<MessageTable>().ToTable("MessageTable", "wcfMessage");
         }
 
         private void MessageTableConfigureation(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MessageTable>().Property(e => e.MESSAGETEXT)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<MessageTable>().HasMany(e => e.MessageTransactions).WithOptional(e => e.Message)
-                .HasForeignKey(e => e.MESSAGEID);
-        }
-
-        /*private void MapMessageTransactionToTable(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<MessageTransactionTable>().ToTable("MessageTransactionTable", "messagedbo");
-        }
-
-        private void MessageTransactionTableConfigureation(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<MessageTransactionTable>().Property(e => e.EMAILADDRESS)
-                .IsUnicode(false);
-        }*/
-
-        private void UserTableDiscriminatorConfig(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<UserTable>().Map<UserTable>(u => u.Requires("ISADVANCEDUSER")
-                .HasValue(false));
-
-            modelBuilder.Entity<UserTable>().Map<AdvancedUser>(au => au.Requires("ISADVANCEDUSER")
-                .HasValue(true));
         }
     }
 }

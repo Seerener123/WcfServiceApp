@@ -11,8 +11,8 @@ namespace MessageDbLib.DbContexts
     public abstract class MessageAbstractDbContext : DbContext
     {
         public virtual DbSet<MessageTable> MessageTables { get; set; }
-        public virtual DbSet<MessageTransactionTable> MessageTransactionTables { get; set; }
-        public virtual DbSet<UserTable> UserTables { get; set; }
+        //public virtual DbSet<MessageTransactionTable> MessageTransactionTables { get; set; }
+        //public virtual DbSet<UserTable> UserTables { get; set; }
 
         protected MessageAbstractDbContext(string connectionString) : base(connectionString)
         {

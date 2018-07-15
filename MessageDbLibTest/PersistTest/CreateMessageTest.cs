@@ -62,7 +62,7 @@ namespace MessageDbLibTest.PersistTest
         //
         #endregion
 
-        [TestMethod]
+        //[TestMethod]
         public void CreateMessageMsSql()
         {
             Random randomNumber = new Random();
