@@ -12,7 +12,8 @@ namespace MessageDbLib.DbContextFactorys
     {
         public static UserAbstractDbContext GetUserDbContext(string dbcontextOption)
         {
-            switch (dbcontextOption)
+            string uppercaseDbcontextOption = dbcontextOption.ToUpper();
+            switch (uppercaseDbcontextOption)
             {
                 case UserDbContextConstant.MsSqlUserDbContext:
                     {

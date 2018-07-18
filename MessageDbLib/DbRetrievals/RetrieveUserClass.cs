@@ -1,4 +1,5 @@
-﻿using MessageDbLib.DbContexts;
+﻿using MessageDbLib.DbContextFactorys;
+using MessageDbLib.DbContexts;
 using MessageDbLib.MessagingEntities;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace MessageDbLib.DbRetrievals
 
         private IList<UserTable> GettingAllEntities()
         {
-            using (var _dbContext = new MessageDbContext())
+            using (var _dbContext = UserDbFactory.GetUserDbContext(DatabaseOptionConfigRetriever.DatabaseOptionAppSetting))
             {
                 return _dbContext.UserTables
                     .ToList();
@@ -60,7 +61,7 @@ namespace MessageDbLib.DbRetrievals
 
         private UserTable FindEntityMatching(Func<UserTable, bool> funcOperation)
         {
-            using (var _dbContext = new MessageDbContext())
+            using (var _dbContext = UserDbFactory.GetUserDbContext(DatabaseOptionConfigRetriever.DatabaseOptionAppSetting))
             {
                 return _dbContext.UserTables
                     .SingleOrDefault(funcOperation);

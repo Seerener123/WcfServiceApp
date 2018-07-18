@@ -8,7 +8,7 @@ namespace MessageDbLib.Constants
 {
     public class MessageDbContextConstant
     {
-        public const string MsSqlMessageDbContext = "MsSqlMessageDbContext";
-        public const string MySqlMessageDbContext = "MySqlMessageDbContext";
+        public const string MsSqlMessageDbContext = "MSSQLMESSAGEDBCONTEXT";
+        public const string MySqlMessageDbContext = "MYSQLMESSAGEDBCONTEXT";
     }
 }

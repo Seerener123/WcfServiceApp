@@ -28,7 +28,7 @@ namespace MessageDbLib.DbContexts
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Ignore<UserTable>();
+            modelBuilder.Ignore<UserTable>(); // These tables don't exist in mysql db, so we're ingoring them for now
             modelBuilder.Ignore<MessageTransactionTable>();
             MessageTableConfigureation(modelBuilder);
             MapMessageToTable(modelBuilder);
@@ -41,7 +41,8 @@ namespace MessageDbLib.DbContexts
 
         private void MessageTableConfigureation(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<MessageTable>().Property(e => e.MESSAGETEXT)
+            modelBuilder.Entity<MessageTable>().HasKey(m => m.ID);
+            modelBuilder.Entity<MessageTable>().Property(m => m.MESSAGETEXT)
                 .IsUnicode(false);
         }
     }

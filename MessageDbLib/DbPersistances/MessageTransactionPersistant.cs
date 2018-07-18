@@ -1,4 +1,5 @@
-﻿using MessageDbLib.DbContexts;
+﻿using MessageDbLib.DbContextFactorys;
+using MessageDbLib.DbContexts;
 using MessageDbLib.MessagingEntities;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,12 @@ namespace MessageDbLib.DbPersistances
 {
     public class MessageTransactionPersistant : IDbPersistant<MessageTransactionTable>
     {
+        private readonly string _dbContextType;
         private IList<MessageTransactionTable> _messageTransactions;
 
-        public MessageTransactionPersistant(IList<MessageTransactionTable> messageTransactions)
+        public MessageTransactionPersistant(IList<MessageTransactionTable> messageTransactions, string dbContextType)
         {
+            _dbContextType = dbContextType;
             _messageTransactions = messageTransactions != null ? new List<MessageTransactionTable>(messageTransactions) : 
                 new List<MessageTransactionTable>(); 
         }
@@ -61,7 +64,7 @@ namespace MessageDbLib.DbPersistances
 
             try
             {
-                using (var _dbContext = new MessageDbContext())
+                using (var _dbContext = MessageDbFactory.GetMessageDbContext(_dbContextType))
                 {
                     _dbContext.MessageTransactionTables.AddRange(_messageTransactions);
                     _dbContext.SaveChanges();

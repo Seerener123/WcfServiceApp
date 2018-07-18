@@ -13,6 +13,7 @@ using WcfServiceApp.Exceptions.Datacontacts;
 using WcfServiceApp.Messaging.DataContracts;
 using System.Data.Entity;
 using MessageDbLib.Constants;
+using MessageDbLib.DbContextFactorys;
 
 namespace WcfServiceApp.Messaging.Services
 {
@@ -67,7 +68,7 @@ namespace WcfServiceApp.Messaging.Services
 
         private void PersistMessage(MessageTable message)
         {
-            MessagePersistant messagePersistant = new MessagePersistant(null, MessageDbContextConstant.MsSqlMessageDbContext);
+            MessagePersistant messagePersistant = new MessagePersistant(null, DatabaseOptionConfigRetriever.DatabaseOptionAppSetting);
             messagePersistant.AddToPending(message);
             messagePersistant.SaveChange();
         }
@@ -93,7 +94,8 @@ namespace WcfServiceApp.Messaging.Services
 
         private void PersistMessageTransaction(List<MessageTransactionTable> messageTransactions)
         {
-            MessageTransactionPersistant transactionPersistant = new MessageTransactionPersistant(messageTransactions);
+            MessageTransactionPersistant transactionPersistant = new MessageTransactionPersistant(messageTransactions, 
+                DatabaseOptionConfigRetriever.DatabaseOptionAppSetting);
             transactionPersistant.SaveChange();
         }
 

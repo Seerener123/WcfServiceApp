@@ -11,8 +11,8 @@ namespace MessageDbLib.DbContexts
 {
     public class MessageDbContext : MessageAbstractDbContext
     {
-        public virtual DbSet<MessageTransactionTable> MessageTransactionTables { get; set; }
-        public virtual DbSet<UserTable> UserTables { get; set; }
+        //public virtual DbSet<MessageTransactionTable> MessageTransactionTables { get; set; }
+        //public virtual DbSet<UserTable> UserTables { get; set; }
 
         public MessageDbContext() : base("name=MessageDbContext")
         {

@@ -73,6 +73,7 @@
     <Compile Include="Constants\MessageDbContextConstant.cs" />
     <Compile Include="Constants\UserDataConstants.cs" />
     <Compile Include="Constants\UserDbContextConstant.cs" />
+    <Compile Include="DbContextFactorys\DatabaseOptionConfigRetriever.cs" />
     <Compile Include="DbContextFactorys\MessageDbFactory.cs" />
     <Compile Include="DbContextFactorys\UserDbFactory.cs" />
     <Compile Include="DbContexts\MessageAbstractDbContext.cs" />
