@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MessageDbLib.Constants;
+using MessageDbLib.DbContextFactorys;
 using MessageDbLib.DbPersistances;
+using MessageDbLib.DbRetrievals;
 using MessageDbLib.MessagingEntities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -48,7 +50,7 @@ namespace MessageDbLibTest.PersistTest
             createUser.SaveChange();
         }
 
-        [TestMethod]
+        //[TestMethod]
         public void CreateUserMysql()
         {
             Random randomNumber = new Random();
@@ -81,6 +83,17 @@ namespace MessageDbLibTest.PersistTest
             createUser.AddToPending(user);
             createUser.AddToPending(advancedUser);
             createUser.SaveChange();
+        }
+
+        //[TestMethod]
+        public void MigrateUserFromMssqlUserToMysqlUser()
+        {
+            RetrieveUserClass retrieveUser = new RetrieveUserClass(UserDbContextConstant.MsSqlUserDbContext);
+            IList<UserTable> allCurrentMsUsers = retrieveUser.GetAllEntities().Take(10).ToList();
+            Console.WriteLine("msuser count: " + allCurrentMsUsers.Count);
+
+            UserPersistant userPersistant = new UserPersistant(allCurrentMsUsers, UserDbContextConstant.MySqlUserDbContext);
+            userPersistant.SaveChange();
         }
     }
 }

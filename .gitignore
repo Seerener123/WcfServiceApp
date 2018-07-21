@@ -300,3 +300,4 @@ __pycache__/
 
 #config files
 *.config
+WcfServiceApp/Web.config

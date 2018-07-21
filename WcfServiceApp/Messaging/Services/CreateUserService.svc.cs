@@ -7,6 +7,7 @@ using System.Text;
 using MessageDbLib.Constants;
 using MessageDbLib.DbContextFactorys;
 using MessageDbLib.DbPersistances;
+using MessageDbLib.DbRetrievals;
 using MessageDbLib.MessagingEntities;
 using WcfServiceApp.Exceptions.Datacontacts;
 

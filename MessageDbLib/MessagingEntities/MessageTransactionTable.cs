@@ -31,7 +31,7 @@ namespace MessageDbLib.MessagingEntities
         //[DataMember(Name = "Message")]
         //public virtual IMessage Message { get; set; }
 
-        [DataMember(Name = "EMAILADDRESS")]
+        [DataMember(Name = "Message")]
         public virtual MessageTable Message { get; set; }
     }
 }

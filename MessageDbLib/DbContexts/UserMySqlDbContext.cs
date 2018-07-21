@@ -1,5 +1,5 @@
 ﻿using MessageDbLib.MessagingEntities;
-//using MySql.Data.Entity;
+using MySql.Data.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MessageDbLib.DbContexts
 {
-    //[DbConfigurationType(typeof(MySqlEFConfiguration))]
+    [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class UserMySqlDbContext : UserAbstractDbContext
     {
         public UserMySqlDbContext() : base("name=MessageMySQLDbContext")
@@ -26,19 +26,21 @@ namespace MessageDbLib.DbContexts
 
         private void UserTableConfiguration(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserTable>().Property(e => e.USERNAME)
+            modelBuilder.Entity<UserTable>().HasKey(u => u.ID);
+
+            modelBuilder.Entity<UserTable>().Property(u => u.USERNAME)
                .IsUnicode(false);
 
-            modelBuilder.Entity<UserTable>().Property(e => e.PASSWORD)
+            modelBuilder.Entity<UserTable>().Property(u => u.PASSWORD)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<UserTable>().Property(e => e.FIRSTNAME)
+            modelBuilder.Entity<UserTable>().Property(u => u.FIRSTNAME)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<UserTable>().Property(e => e.SURNAME)
+            modelBuilder.Entity<UserTable>().Property(u => u.SURNAME)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<UserTable>().Property(e => e.GENDER)
+            modelBuilder.Entity<UserTable>().Property(u => u.GENDER)
                 .IsUnicode(false);
         }
 

@@ -11,6 +11,13 @@ namespace MessageDbLib.DbRetrievals
 {
     public class RetrieveUserClass : IDbRetreive<UserTable>
     {
+        private string _dbContextType;
+
+        public RetrieveUserClass(string dbContextType)
+        {
+            _dbContextType = dbContextType;
+        }
+
         public IList<UserTable> GetAllEntities()
         {
             try
@@ -26,10 +33,10 @@ namespace MessageDbLib.DbRetrievals
 
         private IList<UserTable> GettingAllEntities()
         {
-            using (var _dbContext = UserDbFactory.GetUserDbContext(DatabaseOptionConfigRetriever.DatabaseOptionAppSetting))
+            using (var _dbContext = UserDbFactory.GetUserDbContext(_dbContextType))
             {
-                return _dbContext.UserTables
-                    .ToList();
+                // DatabaseOptionConfigRetriever.DatabaseOptionAppSetting
+                return _dbContext.UserTables.ToList();
             }
         }
 
@@ -61,10 +68,10 @@ namespace MessageDbLib.DbRetrievals
 
         private UserTable FindEntityMatching(Func<UserTable, bool> funcOperation)
         {
-            using (var _dbContext = UserDbFactory.GetUserDbContext(DatabaseOptionConfigRetriever.DatabaseOptionAppSetting))
+            using (var _dbContext = UserDbFactory.GetUserDbContext(_dbContextType))
             {
-                return _dbContext.UserTables
-                    .SingleOrDefault(funcOperation);
+                // DatabaseOptionConfigRetriever.DatabaseOptionAppSetting
+                return _dbContext.UserTables.SingleOrDefault(funcOperation);
             }
         }
     }

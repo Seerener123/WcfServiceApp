@@ -57,7 +57,7 @@ namespace WcfServiceApp.Messaging.Services
 
         private UserTable RetrieveUser(string userName)
         {
-            RetrieveUserClass retrieveUser = new RetrieveUserClass();
+            RetrieveUserClass retrieveUser = new RetrieveUserClass(DatabaseOptionConfigRetriever.DatabaseOptionAppSetting);
             var user = retrieveUser.GetEntityMatchingFunc(u => u.USERNAME == userName);
             if (user == null)
             {
