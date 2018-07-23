@@ -83,6 +83,8 @@
     <Compile Include="DbContexts\UserDbContext.cs" />
     <Compile Include="DbContexts\UserMySqlDbContext.cs" />
     <Compile Include="DbDeletions\IDbDeletion.cs" />
+    <Compile Include="DbDeletions\MessageDeletion.cs" />
+    <Compile Include="DbDeletions\UserDeletion.cs" />
     <Compile Include="DbPersistances\MessagePersistant.cs" />
     <Compile Include="DbPersistances\MessageTransactionPersistant.cs" />
     <Compile Include="DbPersistances\UserPersistant.cs" />

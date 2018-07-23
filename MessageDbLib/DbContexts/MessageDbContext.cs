@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 
 namespace MessageDbLib.DbContexts
 {
+    /* Fluent Api, is an api that is part of the entity
+     * which allows us to configure the domain (entity)
+     * class in the datacontext.
+     * */
     public class MessageDbContext : MessageAbstractDbContext
     {
         //public virtual DbSet<MessageTransactionTable> MessageTransactionTables { get; set; }
@@ -82,10 +86,6 @@ namespace MessageDbLib.DbContexts
                 .IsUnicode(false);
         }
 
-        /* Fluent Api, is an api that is part of the entity
-         * which allows us to configure the domain (entity)
-         * class in the datacontext.
-         * */
         private void UserTableDiscriminatorConfig(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UserTable>().Map<UserTable>(u => u.Requires("ISADVANCEDUSER")
