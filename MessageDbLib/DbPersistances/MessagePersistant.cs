@@ -24,7 +24,7 @@ namespace MessageDbLib.DbPersistances
         {
             if (entity == null)
             {
-                var message = "Entity value is null, thus operation is invalid";
+                var message = "Entity value is null, thus entity cannot be added to message persistant pending collection.";
                 throw new InvalidOperationException(message);
             }
         }
@@ -41,7 +41,7 @@ namespace MessageDbLib.DbPersistances
             {
                 var collectionNull = _messages == null;
                 var state = collectionNull ? "null" : "empty";
-                var message = string.Format("Internal pending collection is {0}", state);
+                var message = string.Format("Internal message persistant pending collection is {0}", state);
                 throw new InvalidOperationException(message);
             }
         }
