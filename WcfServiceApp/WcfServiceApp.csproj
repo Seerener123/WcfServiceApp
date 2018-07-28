@@ -78,6 +78,8 @@
   <ItemGroup>
     <Compile Include="Exceptions\Datacontacts\EntityErrorContract.cs" />
     <Compile Include="Exceptions\Datacontacts\IErrorsContract.cs" />
+    <Compile Include="Exceptions\Datacontacts\NonExistantUserErrorContract.cs" />
+    <Compile Include="Exceptions\Datacontacts\UserExistErrorContract.cs" />
     <Compile Include="Messaging\DataContracts\IMessageContract.cs" />
     <Compile Include="Messaging\DataContracts\MessageContract.cs" />
     <Compile Include="Messaging\Services\CreateMessageService.svc.cs">
@@ -102,7 +104,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Messaging\OperationContracts\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

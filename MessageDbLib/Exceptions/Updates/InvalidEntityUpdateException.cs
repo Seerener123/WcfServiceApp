@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MessageDbLib.Exceptions
+namespace MessageDbLib.Exceptions.Updates
 {
-    public class InvalidEntityDeletionException<TEntity> : Exception where TEntity : IBaseEntity
+    public class InvalidEntityUpdateException<TEntity> : Exception, IBaseEntityException<TEntity> where TEntity : IBaseEntity
     {
         public bool IsEntityNull
         {
@@ -19,7 +19,7 @@ namespace MessageDbLib.Exceptions
 
         public TEntity Entity { get; private set; }
 
-        public InvalidEntityDeletionException(TEntity entity, string message, Exception innerException) : base(message, innerException)
+        public InvalidEntityUpdateException(TEntity entity, string message, Exception innerException) : base(message, innerException)
         {
             Entity = entity;
         }

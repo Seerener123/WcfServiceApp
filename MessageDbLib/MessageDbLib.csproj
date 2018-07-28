@@ -93,7 +93,9 @@
     <Compile Include="DbRetrievals\RetrieveUserClass.cs" />
     <Compile Include="DbUpdates\IDbUpdate.cs" />
     <Compile Include="DbUpdates\UpdateUser.cs" />
-    <Compile Include="Exceptions\InvalidEntityDeletionException.cs" />
+    <Compile Include="Exceptions\Deletions\InvalidEntityDeletionException.cs" />
+    <Compile Include="Exceptions\IBaseEntityException.cs" />
+    <Compile Include="Exceptions\Updates\InvalidEntityUpdateException.cs" />
     <Compile Include="MessagingEntities\AdvancedUser.cs" />
     <Compile Include="MessagingEntities\MessageTable.cs" />
     <Compile Include="MessagingEntities\MessageTransactionTable.cs" />

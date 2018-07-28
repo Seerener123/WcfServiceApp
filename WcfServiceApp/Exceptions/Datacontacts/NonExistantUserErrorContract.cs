@@ -6,8 +6,8 @@ using System.Web;
 
 namespace WcfServiceApp.Exceptions.Datacontacts
 {
-    [DataContract(Name = "EntityErrorContract")]
-    public class EntityErrorContract : IErrorsContract
+    [DataContract(Name = "NonExistantUserErrorContract")]
+    public class NonExistantUserErrorContract : IErrorsContract
     {
         [DataMember(Name = "Message")]
         public string Message { get; set; }

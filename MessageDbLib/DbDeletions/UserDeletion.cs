@@ -1,6 +1,6 @@
 ﻿using MessageDbLib.DbContextFactorys;
 using MessageDbLib.MessagingEntities;
-using MessageDbLib.Exceptions;
+using MessageDbLib.Exceptions.Deletions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
