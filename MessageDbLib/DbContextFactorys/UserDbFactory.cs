@@ -15,11 +15,11 @@ namespace MessageDbLib.DbContextFactorys
             string uppercaseDbcontextOption = dbcontextOption.ToUpper();
             switch (uppercaseDbcontextOption)
             {
-                case UserDbContextConstant.MsSqlUserDbContext:
+                case DbContextConstant.MsSqlDbContext:
                     {
                         return new UserDbContext();
                     }
-                case UserDbContextConstant.MySqlUserDbContext:
+                case DbContextConstant.MySqlDbContext:
                     {
                         return new UserMySqlDbContext();
                     }

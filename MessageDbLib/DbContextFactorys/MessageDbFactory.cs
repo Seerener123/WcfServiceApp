@@ -14,8 +14,8 @@ namespace MessageDbLib.DbContextFactorys
 
         static MessageDbFactory()
         {
-            _messageDbFactoryOptionsList.Add(MessageDbContextConstant.MsSqlMessageDbContext, () => { return new MessageDbContext(); });
-            _messageDbFactoryOptionsList.Add(MessageDbContextConstant.MySqlMessageDbContext, () => { return new MessageMySqlDbContext(); });
+            _messageDbFactoryOptionsList.Add(DbContextConstant.MsSqlDbContext, () => { return new MessageDbContext(); });
+            _messageDbFactoryOptionsList.Add(DbContextConstant.MySqlDbContext, () => { return new MessageMySqlDbContext(); });
         }
 
         public static MessageAbstractDbContext GetMessageDbContext(string dbcontextOption)

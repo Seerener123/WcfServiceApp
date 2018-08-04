@@ -70,9 +70,9 @@
     <Compile Include="BaseDbInterfaces\IMessage.cs" />
     <Compile Include="BaseDbInterfaces\IMessageTransaction.cs" />
     <Compile Include="BaseDbInterfaces\IUser.cs" />
-    <Compile Include="Constants\MessageDbContextConstant.cs" />
+    <Compile Include="Constants\ContextDatabaseTypeList.cs" />
+    <Compile Include="Constants\DbContextConstant.cs" />
     <Compile Include="Constants\UserDataConstants.cs" />
-    <Compile Include="Constants\UserDbContextConstant.cs" />
     <Compile Include="DbContextFactorys\DatabaseOptionConfigRetriever.cs" />
     <Compile Include="DbContextFactorys\MessageDbFactory.cs" />
     <Compile Include="DbContextFactorys\UserDbFactory.cs" />
@@ -107,7 +107,9 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="NoSqlContexts\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="MessagingEntities\TableInheritance.txt" />
   </ItemGroup>

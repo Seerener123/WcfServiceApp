@@ -44,7 +44,7 @@ namespace MessageDbLibTest.PersistTest
                 ADVANCEENDDATETIME = DateTime.Now.AddDays(50)
             };
 
-            UserPersistant createUser = new UserPersistant(null, UserDbContextConstant.MsSqlUserDbContext);
+            UserPersistant createUser = new UserPersistant(null, DbContextConstant.MsSqlDbContext);
             createUser.AddToPending(user);
             createUser.AddToPending(advancedUser);
             createUser.SaveChange();
@@ -79,7 +79,7 @@ namespace MessageDbLibTest.PersistTest
                 ADVANCEENDDATETIME = DateTime.Now.AddDays(50)
             };
 
-            UserPersistant createUser = new UserPersistant(null, UserDbContextConstant.MySqlUserDbContext);
+            UserPersistant createUser = new UserPersistant(null, DbContextConstant.MySqlDbContext);
             createUser.AddToPending(user);
             createUser.AddToPending(advancedUser);
             createUser.SaveChange();
@@ -88,11 +88,11 @@ namespace MessageDbLibTest.PersistTest
         //[TestMethod]
         public void MigrateUserFromMssqlUserToMysqlUser()
         {
-            RetrieveUserClass retrieveUser = new RetrieveUserClass(UserDbContextConstant.MsSqlUserDbContext);
+            RetrieveUserClass retrieveUser = new RetrieveUserClass(DbContextConstant.MsSqlDbContext);
             IList<UserTable> allCurrentMsUsers = retrieveUser.GetAllEntities().Take(10).ToList();
             Console.WriteLine("msuser count: " + allCurrentMsUsers.Count);
 
-            UserPersistant userPersistant = new UserPersistant(allCurrentMsUsers, UserDbContextConstant.MySqlUserDbContext);
+            UserPersistant userPersistant = new UserPersistant(allCurrentMsUsers, DbContextConstant.MySqlDbContext);
             userPersistant.SaveChange();
         }
     }

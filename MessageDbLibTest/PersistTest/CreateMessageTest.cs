@@ -75,7 +75,7 @@ namespace MessageDbLibTest.PersistTest
                 SENDERID = 1
             };
 
-            MessagePersistant createMessage = new MessagePersistant(null, MessageDbContextConstant.MsSqlMessageDbContext);
+            MessagePersistant createMessage = new MessagePersistant(null, DbContextConstant.MsSqlDbContext);
             createMessage.AddToPending(message);
             createMessage.SaveChange();
         }
@@ -93,7 +93,7 @@ namespace MessageDbLibTest.PersistTest
                 SENDERID = 1
             };
 
-            MessagePersistant createMessage = new MessagePersistant(null, MessageDbContextConstant.MySqlMessageDbContext);
+            MessagePersistant createMessage = new MessagePersistant(null, DbContextConstant.MySqlDbContext);
             createMessage.AddToPending(message);
             createMessage.SaveChange();
         }

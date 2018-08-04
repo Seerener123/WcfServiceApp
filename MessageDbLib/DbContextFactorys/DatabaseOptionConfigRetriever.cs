@@ -16,7 +16,7 @@ namespace MessageDbLib.DbContextFactorys
         {
             string appsettingValue = ConfigurationManager.AppSettings["Dbcontextoptiontype"];
             DatabaseOptionAppSetting = appsettingValue != null && appsettingValue != string.Empty ? appsettingValue.ToUpper() : 
-                MessageDbContextConstant.MsSqlMessageDbContext;
+                DbContextConstant.MsSqlDbContext;
         }
     }
 }
