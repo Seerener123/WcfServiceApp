@@ -74,5 +74,37 @@ namespace MessageDbLib.DbRetrievals
                 return _dbContext.UserTables.SingleOrDefault(funcOperation);
             }
         }
+
+        public bool EntityExistMatchingId(long id)
+        {
+            try
+            {
+                using (UserAbstractDbContext _dbContext = UserDbFactory.GetUserDbContext(_dbContextType))
+                {
+                    return _dbContext.UserTables.Any(u => u.ID == id);
+                }
+            }
+            catch (Exception exception)
+            {
+                //
+            }
+            return false;
+        }
+
+        public bool EntityExistMatchingFunc(Func<UserTable, bool> funcOperation)
+        {
+            try
+            {
+                using (UserAbstractDbContext _dbContext = UserDbFactory.GetUserDbContext(_dbContextType))
+                {
+                    return _dbContext.UserTables.Any(funcOperation);
+                }
+            }
+            catch (Exception exception)
+            {
+                //
+            }
+            return false;
+        }
     }
 }

@@ -19,7 +19,15 @@ namespace WcfServiceApp.Messaging.Services
         {
             try
             {
+                if (user.USERNAME != null && user.USERNAME != "" && UsernameAlreadyExist(user.USERNAME))
+                {
+                    throw new InvalidOperationException("This username has already been taken.");
+                }
                 PersistNewUser(user);
+            }
+            catch (InvalidOperationException exception)
+            {
+                ThrowUserExistErrorMessage(exception.Message);
             }
             catch (Exception exception)
             {
@@ -40,7 +48,15 @@ namespace WcfServiceApp.Messaging.Services
             
             try
             {
+                if (user.USERNAME != null && user.USERNAME != "" && UsernameAlreadyExist(user.USERNAME))
+                {
+                    throw new InvalidOperationException("This username has already been taken.");
+                }
                 PersistNewUser(user);
+            }
+            catch (InvalidOperationException exception)
+            {
+                ThrowUserExistErrorMessage(exception.Message);
             }
             catch (Exception exception)
             {
@@ -62,6 +78,21 @@ namespace WcfServiceApp.Messaging.Services
                 Message = message
             };
             throw new FaultException<EntityErrorContract>(error);
+        }
+
+        private void ThrowUserExistErrorMessage(string message)
+        {
+            var error = new UserExistErrorContract
+            {
+                Message = message
+            };
+            throw new FaultException<UserExistErrorContract>(error);
+        }
+
+        private bool UsernameAlreadyExist(string userName)
+        {
+            RetrieveUserClass retrieveUser = new RetrieveUserClass(DatabaseOptionConfigRetriever.DatabaseOptionAppSetting);
+            return retrieveUser.EntityExistMatchingFunc(u => u.USERNAME == userName);
         }
     }
 }
