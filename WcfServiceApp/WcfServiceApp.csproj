@@ -71,6 +71,7 @@
   <ItemGroup>
     <Content Include="Messaging\Services\CreateMessageService.svc" />
     <Content Include="Messaging\Services\CreateUserService.svc" />
+    <Content Include="Messaging\Services\RetrieveUserService.svc" />
     <Content Include="PracticeTs\Services\Service1.svc" />
     <Content Include="PracticeTs\Services\TransferService.svc" />
     <Content Include="Web.config" />
@@ -88,8 +89,12 @@
     <Compile Include="Messaging\Services\CreateUserService.svc.cs">
       <DependentUpon>CreateUserService.svc</DependentUpon>
     </Compile>
-    <Compile Include="BaseOperationContracts\CreationContracts\ICreateMessageService.cs" />
-    <Compile Include="Messaging\Services\ICreateUserService.cs" />
+    <Compile Include="Messaging\ServiceInterfaces\ICreateMessageService.cs" />
+    <Compile Include="Messaging\ServiceInterfaces\ICreateUserService.cs" />
+    <Compile Include="Messaging\ServiceInterfaces\IRetrieveUserService.cs" />
+    <Compile Include="Messaging\Services\RetrieveUserService.svc.cs">
+      <DependentUpon>RetrieveUserService.svc</DependentUpon>
+    </Compile>
     <Compile Include="PracticeTs\Contracts\IPracticeContract.cs" />
     <Compile Include="PracticeTs\Contracts\PracticeContract.cs" />
     <Compile Include="PracticeTs\Services\IService1.cs" />

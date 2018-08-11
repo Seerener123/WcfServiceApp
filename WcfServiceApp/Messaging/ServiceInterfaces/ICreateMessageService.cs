@@ -7,7 +7,7 @@ using System.ServiceModel;
 using System.Text;
 using WcfServiceApp.Messaging.DataContracts;
 
-namespace WcfServiceApp.BaseOperationContracts.CreationContracts
+namespace WcfServiceApp.Messaging.ServiceInterfaces
 {
     [ServiceContract]
     public interface ICreateMessageService

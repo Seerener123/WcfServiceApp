@@ -8,12 +8,12 @@ using MessageDbLib.DbContexts;
 using MessageDbLib.DbPersistances;
 using MessageDbLib.DbRetrievals;
 using MessageDbLib.MessagingEntities;
-using WcfServiceApp.BaseOperationContracts.CreationContracts;
 using WcfServiceApp.Exceptions.Datacontacts;
 using WcfServiceApp.Messaging.DataContracts;
 using System.Data.Entity;
 using MessageDbLib.Constants;
 using MessageDbLib.DbContextFactorys;
+using WcfServiceApp.Messaging.ServiceInterfaces;
 
 namespace WcfServiceApp.Messaging.Services
 {

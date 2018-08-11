@@ -10,6 +10,7 @@ using MessageDbLib.DbPersistances;
 using MessageDbLib.DbRetrievals;
 using MessageDbLib.MessagingEntities;
 using WcfServiceApp.Exceptions.Datacontacts;
+using WcfServiceApp.Messaging.ServiceInterfaces;
 
 namespace WcfServiceApp.Messaging.Services
 {
