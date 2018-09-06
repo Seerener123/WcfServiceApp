@@ -71,6 +71,7 @@
   <ItemGroup>
     <Content Include="Messaging\Services\CreateMessageService.svc" />
     <Content Include="Messaging\Services\CreateUserService.svc" />
+    <Content Include="Messaging\Services\LoginService.svc" />
     <Content Include="Messaging\Services\RetrieveUserService.svc" />
     <Content Include="PracticeTs\Services\Service1.svc" />
     <Content Include="PracticeTs\Services\TransferService.svc" />
@@ -79,6 +80,7 @@
   <ItemGroup>
     <Compile Include="Exceptions\Datacontacts\EntityErrorContract.cs" />
     <Compile Include="Exceptions\Datacontacts\IErrorsContract.cs" />
+    <Compile Include="Exceptions\Datacontacts\LoginErrorContract.cs" />
     <Compile Include="Exceptions\Datacontacts\NonExistantUserErrorContract.cs" />
     <Compile Include="Exceptions\Datacontacts\UserExistErrorContract.cs" />
     <Compile Include="Messaging\DataContracts\IMessageContract.cs" />
@@ -92,6 +94,10 @@
     <Compile Include="Messaging\ServiceInterfaces\ICreateMessageService.cs" />
     <Compile Include="Messaging\ServiceInterfaces\ICreateUserService.cs" />
     <Compile Include="Messaging\ServiceInterfaces\IRetrieveUserService.cs" />
+    <Compile Include="Messaging\ServiceInterfaces\ILoginService.cs" />
+    <Compile Include="Messaging\Services\LoginService.svc.cs">
+      <DependentUpon>LoginService.svc</DependentUpon>
+    </Compile>
     <Compile Include="Messaging\Services\RetrieveUserService.svc.cs">
       <DependentUpon>RetrieveUserService.svc</DependentUpon>
     </Compile>

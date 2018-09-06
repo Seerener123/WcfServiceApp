@@ -22,21 +22,42 @@ namespace MessageDbLib.DbRetrievals
         {
             try
             {
-                return this.GettingAllEntities();
+                return this.RetrieveAllEntities();
             }
             catch (Exception exception)
             {
-                //
+                // logging
             }
             return null;
         }
 
-        private IList<UserTable> GettingAllEntities()
+        private IList<UserTable> RetrieveAllEntities()
         {
             using (var _dbContext = UserDbFactory.GetUserDbContext(_dbContextType))
             {
                 // DatabaseOptionConfigRetriever.DatabaseOptionAppSetting
                 return _dbContext.UserTables.ToList();
+            }
+        }
+
+        public IList<UserTable> GetAllEntitiesFunc(Func<UserTable, bool> funcOperation)
+        {
+            try
+            {
+                return this.RetrieveAllEntitiesFiltered(funcOperation);
+            }
+            catch (Exception exception)
+            {
+                // logging
+            }
+            return null;
+        }
+
+        private IList<UserTable> RetrieveAllEntitiesFiltered(Func<UserTable, bool> funcOperation)
+        {
+            using (var _dbContext = UserDbFactory.GetUserDbContext(_dbContextType))
+            {
+                return _dbContext.UserTables.Where(funcOperation).ToList();
             }
         }
 
@@ -62,6 +83,19 @@ namespace MessageDbLib.DbRetrievals
             catch (Exception exception)
             {
                 //
+            }
+            return null;
+        }
+
+        public UserTable GetEntityMatchingUsernameAndPassword(string username, string password)
+        {
+            try
+            {
+                return FindEntityMatching(u => u.USERNAME == username && u.PASSWORD == password);
+            }
+            catch (Exception exception)
+            {
+                // logging
             }
             return null;
         }
@@ -98,6 +132,22 @@ namespace MessageDbLib.DbRetrievals
                 using (UserAbstractDbContext _dbContext = UserDbFactory.GetUserDbContext(_dbContextType))
                 {
                     return _dbContext.UserTables.Any(funcOperation);
+                }
+            }
+            catch (Exception exception)
+            {
+                //
+            }
+            return false;
+        }
+
+        public bool EntityExistMatchingUsernameAndPassword(string username, string password)
+        {
+            try
+            {
+                using (UserAbstractDbContext _dbContext = UserDbFactory.GetUserDbContext(_dbContextType))
+                {
+                    return _dbContext.UserTables.Any(u => u.USERNAME == username && u.PASSWORD == password);
                 }
             }
             catch (Exception exception)
