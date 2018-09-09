@@ -26,21 +26,21 @@ namespace MessageDbLib.DbContexts
 
         private void UserTableConfiguration(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserTable>().HasKey(u => u.ID);
+            modelBuilder.Entity<UserTable>().HasKey(u => u.Id);
 
-            modelBuilder.Entity<UserTable>().Property(u => u.USERNAME)
+            modelBuilder.Entity<UserTable>().Property(u => u.UserName)
                .IsUnicode(false);
 
-            modelBuilder.Entity<UserTable>().Property(u => u.PASSWORD)
+            modelBuilder.Entity<UserTable>().Property(u => u.Password)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<UserTable>().Property(u => u.FIRSTNAME)
+            modelBuilder.Entity<UserTable>().Property(u => u.FirstName)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<UserTable>().Property(u => u.SURNAME)
+            modelBuilder.Entity<UserTable>().Property(u => u.Surname)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<UserTable>().Property(u => u.GENDER)
+            modelBuilder.Entity<UserTable>().Property(u => u.Gender)
                 .IsUnicode(false);
         }
 

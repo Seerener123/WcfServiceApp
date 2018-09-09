@@ -10,6 +10,6 @@ namespace MessageDbLib.BaseDbInterfaces
     public interface IBaseEntity
     {
         [Key]
-        long ID { get; set; }
+        long Id { get; set; }
     }
 }

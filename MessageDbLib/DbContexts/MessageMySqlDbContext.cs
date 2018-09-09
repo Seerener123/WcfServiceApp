@@ -41,8 +41,8 @@ namespace MessageDbLib.DbContexts
 
         private void MessageTableConfigureation(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<MessageTable>().HasKey(m => m.ID);
-            modelBuilder.Entity<MessageTable>().Property(m => m.MESSAGETEXT)
+            modelBuilder.Entity<MessageTable>().HasKey(m => m.Id);
+            modelBuilder.Entity<MessageTable>().Property(m => m.MessageText)
                 .IsUnicode(false);
         }
     }

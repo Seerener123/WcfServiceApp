@@ -22,44 +22,44 @@ namespace MessageDbLib.MessagingEntities
     {
         /* Please note that the name assignment to each DataMember attribute must be unique,
          * so something like:
-         *      [DataMember(Name = "ID")] // same name assignment
-         *      public long ID { get; set; }
+         *      [DataMember(Name = "Id")] // same name assignment
+         *      public long Id { get; set; }
          *      
-         *      [DataMember(Name = "ID")] // same name assignment
-         *      public string USERNAME { get; set; }
+         *      [DataMember(Name = "Id")] // same name assignment
+         *      public string UserName { get; set; }
          *      
          * Beacause both share the same name, but are different properties, wcf get confused, and
          * throws an exception saying that one of the property is not accessible .i.e. not serialiseable.
          * */
 
-        [DataMember(Name = "ID")]
-        public long ID { get; set; }
+        [DataMember(Name = "Id")]
+        public long Id { get; set; }
 
         [Required]
         [StringLength(500)]
-        [DataMember(Name = "USERNAME")]
-        public string USERNAME { get; set; }
+        [DataMember(Name = "UserName")]
+        public string UserName { get; set; }
 
         [Required]
         [StringLength(500)]
-        [DataMember(Name = "PASSWORD")]
-        public string PASSWORD { get; set; }
+        [DataMember(Name = "Password")]
+        public string Password { get; set; }
 
         [StringLength(100)]
-        [DataMember(Name = "FIRSTNAME")]
-        public string FIRSTNAME { get; set; }
+        [DataMember(Name = "FirstName")]
+        public string FirstName { get; set; }
 
         [StringLength(100)]
-        [DataMember(Name = "SURNAME")]
-        public string SURNAME { get; set; }
+        [DataMember(Name = "Surname")]
+        public string Surname { get; set; }
 
         //[Required]
-        [DataMember(Name = "DOB")]
-        public DateTime? DOB { get; set; }
+        [DataMember(Name = "Dob")]
+        public DateTime? Dob { get; set; }
 
         [StringLength(6)]
-        [DataMember(Name = "GENDER")]
-        public string GENDER { get; set; }
+        [DataMember(Name = "Gender")]
+        public string Gender { get; set; }
 
         [DataMember(Name = "Messages")]
         public ICollection<MessageTable> Messages { get; set; }

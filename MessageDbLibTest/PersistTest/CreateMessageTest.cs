@@ -62,7 +62,7 @@ namespace MessageDbLibTest.PersistTest
         //
         #endregion
 
-        //[TestMethod]
+        [TestMethod]
         public void CreateMessageMsSql()
         {
             Random randomNumber = new Random();
@@ -70,9 +70,9 @@ namespace MessageDbLibTest.PersistTest
 
             MessageTable message = new MessageTable()
             {
-                MESSAGETEXT = messagetext,
-                MESSAGECREATED = DateTime.Now,
-                SENDERID = 1
+                MessageText = messagetext,
+                MessageCreated = DateTime.Now,
+                SenderId = 1
             };
 
             MessagePersistant createMessage = new MessagePersistant(null, DbContextConstant.MsSqlDbContext);
@@ -80,7 +80,7 @@ namespace MessageDbLibTest.PersistTest
             createMessage.SaveChange();
         }
 
-        [TestMethod]
+        //[TestMethod]
         public void CreateMessageMYSql()
         {
             Random randomNumber = new Random();
@@ -88,9 +88,9 @@ namespace MessageDbLibTest.PersistTest
 
             MessageTable message = new MessageTable()
             {
-                MESSAGETEXT = messagetext,
-                MESSAGECREATED = DateTime.Now,
-                SENDERID = 1
+                MessageText = messagetext,
+                MessageCreated = DateTime.Now,
+                SenderId = 1
             };
 
             MessagePersistant createMessage = new MessagePersistant(null, DbContextConstant.MySqlDbContext);

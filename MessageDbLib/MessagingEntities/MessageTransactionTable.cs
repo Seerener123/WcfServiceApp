@@ -10,23 +10,23 @@ namespace MessageDbLib.MessagingEntities
 {
     //[Table("MessageTransactionTable", Schema = "messagedbo")]
     [DataContract(Name = "MessageTransactionTable")]
-    public class MessageTransactionTable : IBaseEntity
+    public class MessageTransactionTable : IMessageTransaction
     {
-        [DataMember(Name = "ID")]
-        public long ID { get; set; }
+        [DataMember(Name = "Id")]
+        public long Id { get; set; }
 
         [StringLength(500)]
-        [DataMember(Name = "EMAILADDRESS")]
-        public string EMAILADDRESS { get; set; }
+        [DataMember(Name = "EmailAddress")]
+        public string EmailAddress { get; set; }
 
-        [DataMember(Name = "MESSAGEID")]
-        public long? MESSAGEID { get; set; }
+        [DataMember(Name = "MessageId")]
+        public long? MessageId { get; set; }
 
-        [DataMember(Name = "MESSAGERECEIVED")]
-        public bool? MESSAGERECEIVED { get; set; }
+        [DataMember(Name = "MessageReceived")]
+        public bool? MessageReceived { get; set; }
 
-        [DataMember(Name = "MESSAGERECEIVEDTIME")]
-        public DateTime? MESSAGERECEIVEDTIME { get; set; }
+        [DataMember(Name = "MessageReceivedTime")]
+        public DateTime? MessageReceivedTime { get; set; }
 
         //[DataMember(Name = "Message")]
         //public virtual IMessage Message { get; set; }

@@ -24,22 +24,22 @@ namespace MessageDbLibTest.PersistTest
 
             UserTable user = new UserTable()
             {
-                FIRSTNAME = firstName,
-                SURNAME = secondName,
-                DOB = DateTime.Now,
-                GENDER = UserDataConstants.Male,
-                USERNAME = firstName + "_" + secondName,
-                PASSWORD = "password" + firstName + "_" + secondName
+                FirstName = firstName,
+                Surname = secondName,
+                Dob = DateTime.Now,
+                Gender = UserDataConstants.Male,
+                UserName = firstName + "_" + secondName,
+                Password = "password" + firstName + "_" + secondName
             };
 
             AdvancedUser advancedUser = new AdvancedUser()
             {
-                FIRSTNAME = "advance " + firstName,
-                SURNAME = "advance " + secondName,
-                DOB = DateTime.Now,
-                GENDER = UserDataConstants.Male,
-                USERNAME = "advance " + firstName + "_" + secondName,
-                PASSWORD = "password" + firstName + "_" + secondName,
+                FirstName = "advance " + firstName,
+                Surname = "advance " + secondName,
+                Dob = DateTime.Now,
+                Gender = UserDataConstants.Male,
+                UserName = "advance " + firstName + "_" + secondName,
+                Password = "password" + firstName + "_" + secondName,
                 ADVANCESTARTDATETIME = DateTime.Now,
                 ADVANCEENDDATETIME = DateTime.Now.AddDays(50)
             };
@@ -59,22 +59,22 @@ namespace MessageDbLibTest.PersistTest
 
             UserTable user = new UserTable()
             {
-                FIRSTNAME = firstName,
-                SURNAME = secondName,
-                DOB = DateTime.Now,
-                GENDER = UserDataConstants.Male,
-                USERNAME = firstName + "_" + secondName,
-                PASSWORD = "password" + firstName + "_" + secondName
+                FirstName = firstName,
+                Surname = secondName,
+                Dob = DateTime.Now,
+                Gender = UserDataConstants.Male,
+                UserName = firstName + "_" + secondName,
+                Password = "password" + firstName + "_" + secondName
             };
 
             AdvancedUser advancedUser = new AdvancedUser()
             {
-                FIRSTNAME = "advance " + firstName,
-                SURNAME = "advance " + secondName,
-                DOB = DateTime.Now,
-                GENDER = UserDataConstants.Male,
-                USERNAME = "advance " + firstName + "_" + secondName,
-                PASSWORD = "password" + firstName + "_" + secondName,
+                FirstName = "advance " + firstName,
+                Surname = "advance " + secondName,
+                Dob = DateTime.Now,
+                Gender = UserDataConstants.Male,
+                UserName = "advance " + firstName + "_" + secondName,
+                Password = "password" + firstName + "_" + secondName,
                 ADVANCESTARTDATETIME = DateTime.Now,
                 ADVANCEENDDATETIME = DateTime.Now.AddDays(50)
             };
