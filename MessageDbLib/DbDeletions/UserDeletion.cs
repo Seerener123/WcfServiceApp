@@ -22,7 +22,7 @@ namespace MessageDbLib.DbDeletions
 
         private void CheckingEntityValidity(UserTable entity)
         {
-            if (entity == null || entity.ID == 0)
+            if (entity == null || entity.Id == 0)
             {
                 string reason = entity == null ? "is null" : "is not a persisted object";
                 string message = string.Format("Entity value {0}, thus cannot be added to the user deletion pending collection.", reason);

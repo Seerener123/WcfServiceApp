@@ -20,7 +20,7 @@ namespace WcfServiceApp.Messaging.Services
         {
             try
             {
-                if (user.USERNAME != null && user.USERNAME != "" && UsernameAlreadyExist(user.USERNAME))
+                if (user.UserName != null && user.UserName != "" && UsernameAlreadyExist(user.UserName))
                 {
                     throw new InvalidOperationException("This username has already been taken.");
                 }
@@ -40,16 +40,16 @@ namespace WcfServiceApp.Messaging.Services
         {
             /*var advanceUser = new AdvancedUser()
             {
-                USERNAME = user.USERNAME,
-                PASSWORD = user.PASSWORD,
-                DOB = user.DOB,
+                UserName = user.UserName,
+                Password = user.Password,
+                Dob = user.Dob,
                 ADVANCEENDDATETIME = DateTime.Now.AddDays(50d),
                 ADVANCESTARTDATETIME = DateTime.Now
             };*/
             
             try
             {
-                if (user.USERNAME != null && user.USERNAME != "" && UsernameAlreadyExist(user.USERNAME))
+                if (user.UserName != null && user.UserName != "" && UsernameAlreadyExist(user.UserName))
                 {
                     throw new InvalidOperationException("This username has already been taken.");
                 }
@@ -93,7 +93,7 @@ namespace WcfServiceApp.Messaging.Services
         private bool UsernameAlreadyExist(string userName)
         {
             RetrieveUserClass retrieveUser = new RetrieveUserClass(DatabaseOptionConfigRetriever.DatabaseOptionAppSetting);
-            return retrieveUser.EntityExistMatchingFunc(u => u.USERNAME == userName);
+            return retrieveUser.EntityExistMatchingFunc(u => u.UserName == userName);
         }
     }
 }

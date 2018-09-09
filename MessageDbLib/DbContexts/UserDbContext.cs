@@ -38,19 +38,19 @@ namespace MessageDbLib.DbContexts
 
         private void UserTableConfiguration(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserTable>().Property(e => e.USERNAME)
+            modelBuilder.Entity<UserTable>().Property(e => e.UserName)
                .IsUnicode(false);
 
-            modelBuilder.Entity<UserTable>().Property(e => e.PASSWORD)
+            modelBuilder.Entity<UserTable>().Property(e => e.Password)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<UserTable>().Property(e => e.FIRSTNAME)
+            modelBuilder.Entity<UserTable>().Property(e => e.FirstName)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<UserTable>().Property(e => e.SURNAME)
+            modelBuilder.Entity<UserTable>().Property(e => e.Surname)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<UserTable>().Property(e => e.GENDER)
+            modelBuilder.Entity<UserTable>().Property(e => e.Gender)
                 .IsUnicode(false);
         }
 

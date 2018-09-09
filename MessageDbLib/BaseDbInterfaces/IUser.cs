@@ -8,16 +8,16 @@ namespace MessageDbLib.BaseDbInterfaces
 {
     public interface IUser : IBaseEntity
     {
-        string USERNAME { get; set; }
+        string UserName { get; set; }
 
-        string PASSWORD { get; set; }
+        string Password { get; set; }
 
-        string FIRSTNAME { get; set; }
+        string FirstName { get; set; }
 
-        string SURNAME { get; set; }
+        string Surname { get; set; }
 
-        DateTime? DOB { get; set; }
+        DateTime? Dob { get; set; }
 
-        string GENDER { get; set; }
+        string Gender { get; set; }
     }
 }

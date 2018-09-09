@@ -8,8 +8,8 @@ namespace MessageDbLib.BaseDbInterfaces
 {
     public interface IMessage : IBaseEntity
     {
-        string MESSAGETEXT { get; set; }
-        long? SENDERID { get; set; }
-        DateTime? MESSAGECREATED { get; set; }
+        string MessageText { get; set; }
+        long? SenderId { get; set; }
+        DateTime? MessageCreated { get; set; }
     }
 }

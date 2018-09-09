@@ -57,7 +57,7 @@ namespace MessageDbLib.DbRetrievals
         {
             try
             {
-                return this.FindEntityMatching(x => x.ID == id);
+                return this.FindEntityMatching(x => x.Id == id);
             }
             catch (Exception exception)
             {
@@ -81,7 +81,7 @@ namespace MessageDbLib.DbRetrievals
             {
                 using (UserAbstractDbContext _dbContext = UserDbFactory.GetUserDbContext(_dbContextType))
                 {
-                    return _dbContext.UserTables.Any(u => u.ID == id);
+                    return _dbContext.UserTables.Any(u => u.Id == id);
                 }
             }
             catch (Exception exception)

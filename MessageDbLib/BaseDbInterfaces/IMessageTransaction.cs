@@ -8,12 +8,12 @@ namespace MessageDbLib.BaseDbInterfaces
 {
     public interface IMessageTransaction : IBaseEntity
     {
-        string EMAILADDRESS { get; set; }
+        string EmailAddress { get; set; }
 
-        long? MESSAGEID { get; set; }
+        long? MessageId { get; set; }
 
-        bool? MESSAGERECEIVED { get; set; }
+        bool? MessageReceived { get; set; }
 
-        DateTime? MESSAGERECEIVEDTIME { get; set; }
+        DateTime? MessageReceivedTime { get; set; }
     }
 }

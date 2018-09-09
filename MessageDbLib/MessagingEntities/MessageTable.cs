@@ -12,19 +12,19 @@ namespace MessageDbLib.MessagingEntities
     [DataContract(Name = "MessageTable")]
     public class MessageTable : IMessage
     {
-        [DataMember(Name = "ID")]
-        public long ID { get; set; }
+        [DataMember(Name = "Id")]
+        public long Id { get; set; }
 
-        [DataMember(Name = "MESSAGETEXT")]
-        public string MESSAGETEXT { get; set; }
+        [DataMember(Name = "MessageText")]
+        public string MessageText { get; set; }
 
-        [DataMember(Name = "SENDERID")]
-        public long? SENDERID { get; set; }
+        [DataMember(Name = "SenderId")]
+        public long? SenderId { get; set; }
 
-        [DataMember(Name = "MESSAGECREATED")]
-        public DateTime? MESSAGECREATED { get; set; }
+        [DataMember(Name = "MessageCreated")]
+        public DateTime? MessageCreated { get; set; }
 
-        //[ForeignKey("SENDERID")]
+        //[ForeignKey("SenderId")]
         [DataMember(Name = "User")]
         public virtual UserTable User { get; set; }
 

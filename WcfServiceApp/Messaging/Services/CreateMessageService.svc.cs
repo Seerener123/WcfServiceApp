@@ -48,9 +48,9 @@ namespace WcfServiceApp.Messaging.Services
             UserTable user = RetrieveUser(messageContract.UserName);
             MessageTable newMessage = new MessageTable
             {
-                MESSAGETEXT = messageContract.Message,
-                SENDERID = user.ID,
-                MESSAGECREATED = messageContract.MessageCreated
+                MessageText = messageContract.Message,
+                SenderId = user.Id,
+                MessageCreated = messageContract.MessageCreated
             };
             return newMessage;
         }
@@ -58,7 +58,7 @@ namespace WcfServiceApp.Messaging.Services
         private UserTable RetrieveUser(string userName)
         {
             RetrieveUserClass retrieveUser = new RetrieveUserClass(DatabaseOptionConfigRetriever.DatabaseOptionAppSetting);
-            var user = retrieveUser.GetEntityMatchingFunc(u => u.USERNAME == userName);
+            var user = retrieveUser.GetEntityMatchingFunc(u => u.UserName == userName);
             if (user == null)
             {
                 throw new Exception();
@@ -82,9 +82,9 @@ namespace WcfServiceApp.Messaging.Services
             {
                 var messageTransaction = new MessageTransactionTable
                 {
-                    EMAILADDRESS = emailAddress,
-                    MESSAGEID = message.ID,
-                    MESSAGERECEIVED = false
+                    EmailAddress = emailAddress,
+                    MessageId = message.Id,
+                    MessageReceived = false
                 };
                 messageTransactions.Add(messageTransaction);
             }
