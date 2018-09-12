@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MessageDbLib.Constants
+namespace MessageBaseDbLib.Constants
 {
     public static class ContextDatabaseTypeList
     {

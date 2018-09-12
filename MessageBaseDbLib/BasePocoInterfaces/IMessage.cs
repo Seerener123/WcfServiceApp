@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MessageDbLib.BaseDbInterfaces
+namespace MessageBaseDbLib.BasePocoInterfaces
 {
     public interface IMessage : IBaseEntity
     {

@@ -1,11 +1,11 @@
-﻿using MessageDbLib.BaseDbInterfaces;
-using System;
+﻿using MessageBaseDbLib.BasePocoInterfaces;
+/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading.Tasks;*/
 
-namespace MessageDbLib.DbPersistances
+namespace MessageBaseDbLib.DbPersistanceInterfaces
 {
     public interface IDbPersistant<TEntity> where TEntity : IBaseEntity
     {

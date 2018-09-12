@@ -1,11 +1,11 @@
-﻿using MessageDbLib.BaseDbInterfaces;
+﻿using MessageBaseDbLib.BasePocoInterfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+/*using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading.Tasks;*/
 
-namespace MessageDbLib.DbRetrievals
+namespace MessageBaseDbLib.DbRetrievalInterfaces
 {
     public interface IDbRetreive<TEntity> where TEntity : IBaseEntity
     {

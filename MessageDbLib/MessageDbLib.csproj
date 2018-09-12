@@ -66,13 +66,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseDbInterfaces\IBaseEntity.cs" />
-    <Compile Include="BaseDbInterfaces\IMessage.cs" />
-    <Compile Include="BaseDbInterfaces\IMessageTransaction.cs" />
-    <Compile Include="BaseDbInterfaces\IUser.cs" />
-    <Compile Include="Constants\ContextDatabaseTypeList.cs" />
-    <Compile Include="Constants\DbContextConstant.cs" />
-    <Compile Include="Constants\UserDataConstants.cs" />
     <Compile Include="DbContextFactorys\DatabaseOptionConfigRetriever.cs" />
     <Compile Include="DbContextFactorys\MessageDbFactory.cs" />
     <Compile Include="DbContextFactorys\UserDbFactory.cs" />
@@ -82,16 +75,13 @@
     <Compile Include="DbContexts\UserAbstractDbContext.cs" />
     <Compile Include="DbContexts\UserDbContext.cs" />
     <Compile Include="DbContexts\UserMySqlDbContext.cs" />
-    <Compile Include="DbDeletions\IDbDeletion.cs" />
     <Compile Include="DbDeletions\MessageDeletion.cs" />
     <Compile Include="DbDeletions\MessageTransactionDeletion.cs" />
     <Compile Include="DbDeletions\UserDeletion.cs" />
     <Compile Include="DbPersistances\MessagePersistant.cs" />
     <Compile Include="DbPersistances\MessageTransactionPersistant.cs" />
     <Compile Include="DbPersistances\UserPersistant.cs" />
-    <Compile Include="DbRetrievals\IDbRetreive.cs" />
     <Compile Include="DbRetrievals\RetrieveUserClass.cs" />
-    <Compile Include="DbUpdates\IDbUpdate.cs" />
     <Compile Include="DbUpdates\UpdateUser.cs" />
     <Compile Include="Exceptions\Deletions\InvalidEntityDeletionException.cs" />
     <Compile Include="Exceptions\IBaseEntityException.cs" />
@@ -100,7 +90,6 @@
     <Compile Include="MessagingEntities\MessageTable.cs" />
     <Compile Include="MessagingEntities\MessageTransactionTable.cs" />
     <Compile Include="MessagingEntities\UserTable.cs" />
-    <Compile Include="DbPersistances\IDbPersistant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +101,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MessagingEntities\TableInheritance.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MessageBaseDbLib\MessageBaseDbLib.csproj">
+      <Project>{cf2c7df0-cc51-44a9-85ff-18b3d67cb6bf}</Project>
+      <Name>MessageBaseDbLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

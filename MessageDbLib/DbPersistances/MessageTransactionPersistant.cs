@@ -1,11 +1,9 @@
-﻿using MessageDbLib.DbContextFactorys;
-using MessageDbLib.DbContexts;
+﻿using MessageBaseDbLib.DbPersistanceInterfaces;
+using MessageDbLib.DbContextFactorys;
 using MessageDbLib.MessagingEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MessageDbLib.DbPersistances
 {

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.Text;
 using MessageDbLib.DbContexts;
 using MessageDbLib.DbPersistances;
 using MessageDbLib.DbRetrievals;
@@ -11,7 +9,6 @@ using MessageDbLib.MessagingEntities;
 using WcfServiceApp.Exceptions.Datacontacts;
 using WcfServiceApp.Messaging.DataContracts;
 using System.Data.Entity;
-using MessageDbLib.Constants;
 using MessageDbLib.DbContextFactorys;
 using WcfServiceApp.Messaging.ServiceInterfaces;
 

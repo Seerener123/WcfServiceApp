@@ -1,4 +1,4 @@
-﻿using MessageDbLib.BaseDbInterfaces;
+﻿using MessageBaseDbLib.DbUpdateInterfaces;
 using MessageDbLib.DbContextFactorys;
 using MessageDbLib.DbContexts;
 using MessageDbLib.Exceptions.Updates;
@@ -7,8 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MessageDbLib.DbUpdates
 {
