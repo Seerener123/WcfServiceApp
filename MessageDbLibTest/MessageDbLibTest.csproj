@@ -88,6 +88,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MessageBaseDbLib\MessageBaseDbLib.csproj">
+      <Project>{CF2C7DF0-CC51-44A9-85FF-18B3D67CB6BF}</Project>
+      <Name>MessageBaseDbLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MessageDbLib\MessageDbLib.csproj">
       <Project>{77445fc9-820e-4bc0-aacc-870047e1b956}</Project>
       <Name>MessageDbLib</Name>

@@ -1,4 +1,4 @@
-﻿using MessageDbLib.Constants;
+﻿using MessageBaseDbLib.Constants;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

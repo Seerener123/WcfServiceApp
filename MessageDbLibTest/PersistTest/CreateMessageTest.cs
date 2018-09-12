@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MessageDbLib.BaseDbInterfaces;
 using MessageDbLib.MessagingEntities;
-using MessageDbLib.Constants;
 using MessageDbLib.DbPersistances;
+using MessageBaseDbLib.Constants;
 
 namespace MessageDbLibTest.PersistTest
 {

@@ -1,12 +1,10 @@
-﻿using MessageDbLib.DbContextFactorys;
-using MessageDbLib.Exceptions;
+﻿using MessageBaseDbLib.DbDeletionInterfaces;
+using MessageDbLib.DbContextFactorys;
 using MessageDbLib.Exceptions.Deletions;
 using MessageDbLib.MessagingEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MessageDbLib.DbDeletions
 {
