@@ -90,7 +90,7 @@ namespace MessageDbLib.DbRetrievals
         {
             try
             {
-                return FindEntityMatching(u => u.USERNAME == username && u.PASSWORD == password);
+                return FindEntityMatching(u => u.UserName == username && u.Password == password);
             }
             catch (Exception exception)
             {
@@ -146,7 +146,7 @@ namespace MessageDbLib.DbRetrievals
             {
                 using (UserAbstractDbContext _dbContext = UserDbFactory.GetUserDbContext(_dbContextType))
                 {
-                    return _dbContext.UserTables.Any(u => u.USERNAME == username && u.PASSWORD == password);
+                    return _dbContext.UserTables.Any(u => u.UserName == username && u.Password == password);
                 }
             }
             catch (Exception exception)
