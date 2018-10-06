@@ -51,7 +51,8 @@
     <Compile Include="Constants\UserDataConstants.cs" />
     <Compile Include="DbDeletionInterfaces\IDbDeletion.cs" />
     <Compile Include="DbPersistanceInterfaces\IDbPersistant.cs" />
-    <Compile Include="DbRetrievalInterfaces\IDbRetreive.cs" />
+    <Compile Include="DbRetrievalInterfaces\IDbRetrieve.cs" />
+    <Compile Include="DbRetrievalInterfaces\IDbRetrieveUser.cs" />
     <Compile Include="DbUpdateInterfaces\IDbUpdate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

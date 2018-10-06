@@ -88,7 +88,7 @@ namespace WcfServiceApp.Messaging.Services
         private bool UsernameAlreadyExist(string userName)
         {
             RetrieveUserClass retrieveUser = new RetrieveUserClass(DatabaseOptionConfigRetriever.DatabaseOptionAppSetting);
-            return retrieveUser.EntityExistMatchingFunc(u => u.UserName == userName);
+            return retrieveUser.EntityExistMatchingFunc(u => u.UserName == userName) == true;
         }
     }
 }

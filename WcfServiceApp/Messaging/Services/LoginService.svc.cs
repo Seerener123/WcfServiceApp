@@ -1,5 +1,7 @@
-﻿using MessageDbLib.DbContextFactorys;
+﻿using MessageBaseDbLib.DbRetrievalInterfaces;
+using MessageDbLib.DbContextFactorys;
 using MessageDbLib.DbRetrievals;
+using MessageDbLib.MessagingEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +24,8 @@ namespace WcfServiceApp.Messaging.Services
                 string decryptedUsername = encryptedUser;
                 string decryptedPassword = encryptedPassword;
 
-                RetrieveUserClass retrieveUsers = new RetrieveUserClass(DatabaseOptionConfigRetriever.DatabaseOptionAppSetting);
-                if (retrieveUsers.EntityExistMatchingUsernameAndPassword(decryptedUsername, decryptedPassword))
+                IDbRetrieveUser<UserTable> retrieveUsers = new RetrieveUserClass(DatabaseOptionConfigRetriever.DatabaseOptionAppSetting);
+                if (retrieveUsers.EntityExistMatchingUsernameAndPassword(decryptedUsername, decryptedPassword) == true)
                 {
                     return true;
                 }

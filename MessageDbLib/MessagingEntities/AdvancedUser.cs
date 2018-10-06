@@ -6,11 +6,11 @@ namespace MessageDbLib.MessagingEntities
     [DataContract]
     public class AdvancedUser : UserTable
     {
-        [DataMember(Name = "ADVANCESTARTDATETIME")]
-        public DateTime? ADVANCESTARTDATETIME { get; set; }
+        [DataMember(Name = "AdvanceStartDatetime")]
+        public DateTime? AdvanceStartDatetime { get; set; }
 
-        [DataMember(Name = "ADVANCEENDDATETIME")]
-        public DateTime? ADVANCEENDDATETIME { get; set; }
+        [DataMember(Name = "AdvanceEndDatetime")]
+        public DateTime? AdvanceEndDatetime { get; set; }
 
         /* The property below: ISADVANCEDUSER is used as a 
          * discriminator column in tabler-per-hierachy.

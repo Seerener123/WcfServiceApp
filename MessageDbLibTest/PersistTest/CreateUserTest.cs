@@ -37,8 +37,8 @@ namespace MessageDbLibTest.PersistTest
                 Gender = UserDataConstants.Male,
                 UserName = "advance " + firstName + "_" + secondName,
                 Password = "password" + firstName + "_" + secondName,
-                ADVANCESTARTDATETIME = DateTime.Now,
-                ADVANCEENDDATETIME = DateTime.Now.AddDays(50)
+                AdvanceStartDatetime = DateTime.Now,
+                AdvanceEndDatetime = DateTime.Now.AddDays(50)
             };
 
             UserPersistant createUser = new UserPersistant(null, DbContextConstant.MsSqlDbContext);
@@ -72,8 +72,8 @@ namespace MessageDbLibTest.PersistTest
                 Gender = UserDataConstants.Male,
                 UserName = "advance " + firstName + "_" + secondName,
                 Password = "password" + firstName + "_" + secondName,
-                ADVANCESTARTDATETIME = DateTime.Now,
-                ADVANCEENDDATETIME = DateTime.Now.AddDays(50)
+                AdvanceStartDatetime = DateTime.Now,
+                AdvanceEndDatetime = DateTime.Now.AddDays(50)
             };
 
             UserPersistant createUser = new UserPersistant(null, DbContextConstant.MySqlDbContext);

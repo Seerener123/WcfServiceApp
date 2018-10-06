@@ -81,6 +81,8 @@
     <Compile Include="DbPersistances\MessagePersistant.cs" />
     <Compile Include="DbPersistances\MessageTransactionPersistant.cs" />
     <Compile Include="DbPersistances\UserPersistant.cs" />
+    <Compile Include="DbRetrievals\RetrieveMessageClass.cs" />
+    <Compile Include="DbRetrievals\RetrieveMessageTransactionClass.cs" />
     <Compile Include="DbRetrievals\RetrieveUserClass.cs" />
     <Compile Include="DbUpdates\UpdateUser.cs" />
     <Compile Include="Exceptions\Deletions\InvalidEntityDeletionException.cs" />

@@ -12,8 +12,6 @@ using WcfServiceApp.Messaging.ServiceInterfaces;
 
 namespace WcfServiceApp.Messaging.Services
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "RetrieveUserService" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select RetrieveUserService.svc or RetrieveUserService.svc.cs at the Solution Explorer and start debugging.
     public class RetrieveUserService : IRetrieveUserService
     {
         public List<UserTable> GetAllUsers()

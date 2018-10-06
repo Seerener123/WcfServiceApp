@@ -25,11 +25,13 @@ namespace WcfServiceApp.Messaging.Services
                     throw new InvalidOperationException("Message contract does not have ant emails attahed.");
                 }
 
-                using (var _dbcontext = new MessageDbContext())
+                /*using (var _dbcontext = new MessageDbContext())
                 {
                     var messages = _dbcontext.MessageTables.Include(m => m.User)
                         .ToList();
-                }
+                    // System.Data.Entity;
+                }*/
+
                 MessageTable newMessage = CreateNewMessage(message);
                 PersistMessage(newMessage);
                 CreateMessageTransaction(message, newMessage);

@@ -8,9 +8,9 @@ using System.Linq;
 
 namespace MessageDbLib.DbRetrievals
 {
-    public class RetrieveUserClass : IDbRetreive<UserTable>
+    public class RetrieveUserClass : IDbRetrieveUser<UserTable>
     {
-        private string _dbContextType;
+        private readonly string _dbContextType;
 
         public RetrieveUserClass(string dbContextType)
         {
@@ -108,7 +108,7 @@ namespace MessageDbLib.DbRetrievals
             }
         }
 
-        public bool EntityExistMatchingId(long id)
+        public bool? EntityExistMatchingId(long id)
         {
             try
             {
@@ -121,10 +121,10 @@ namespace MessageDbLib.DbRetrievals
             {
                 //
             }
-            return false;
+            return null;
         }
 
-        public bool EntityExistMatchingFunc(Func<UserTable, bool> funcOperation)
+        public bool? EntityExistMatchingFunc(Func<UserTable, bool> funcOperation)
         {
             try
             {
@@ -137,10 +137,10 @@ namespace MessageDbLib.DbRetrievals
             {
                 //
             }
-            return false;
+            return null;
         }
 
-        public bool EntityExistMatchingUsernameAndPassword(string username, string password)
+        public bool? EntityExistMatchingUsernameAndPassword(string username, string password)
         {
             try
             {
@@ -153,7 +153,7 @@ namespace MessageDbLib.DbRetrievals
             {
                 //
             }
-            return false;
+            return null;
         }
     }
 }

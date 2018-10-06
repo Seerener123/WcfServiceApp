@@ -72,6 +72,7 @@
     <Content Include="Messaging\Services\CreateMessageService.svc" />
     <Content Include="Messaging\Services\CreateUserService.svc" />
     <Content Include="Messaging\Services\LoginService.svc" />
+    <Content Include="Messaging\Services\RetrieveMessageService.svc" />
     <Content Include="Messaging\Services\RetrieveUserService.svc" />
     <Content Include="PracticeTs\Services\Service1.svc" />
     <Content Include="PracticeTs\Services\TransferService.svc" />
@@ -85,6 +86,8 @@
     <Compile Include="Exceptions\Datacontacts\UserExistErrorContract.cs" />
     <Compile Include="Messaging\DataContracts\IMessageContract.cs" />
     <Compile Include="Messaging\DataContracts\MessageContract.cs" />
+    <Compile Include="Messaging\DataContracts\MessageContracts\IMessageTransactionInfoContract.cs" />
+    <Compile Include="Messaging\DataContracts\MessageContracts\MessageTransactionInfoContract.cs" />
     <Compile Include="Messaging\Services\CreateMessageService.svc.cs">
       <DependentUpon>CreateMessageService.svc</DependentUpon>
     </Compile>
@@ -95,8 +98,12 @@
     <Compile Include="Messaging\ServiceInterfaces\ICreateUserService.cs" />
     <Compile Include="Messaging\ServiceInterfaces\IRetrieveUserService.cs" />
     <Compile Include="Messaging\ServiceInterfaces\ILoginService.cs" />
+    <Compile Include="Messaging\ServiceInterfaces\IRetrieveMessageService.cs" />
     <Compile Include="Messaging\Services\LoginService.svc.cs">
       <DependentUpon>LoginService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Messaging\Services\RetrieveMessageService.svc.cs">
+      <DependentUpon>RetrieveMessageService.svc</DependentUpon>
     </Compile>
     <Compile Include="Messaging\Services\RetrieveUserService.svc.cs">
       <DependentUpon>RetrieveUserService.svc</DependentUpon>
@@ -126,6 +133,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MessageBaseDbLib\MessageBaseDbLib.csproj">
+      <Project>{CF2C7DF0-CC51-44A9-85FF-18B3D67CB6BF}</Project>
+      <Name>MessageBaseDbLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MessageDbLib\MessageDbLib.csproj">
       <Project>{77445fc9-820e-4bc0-aacc-870047e1b956}</Project>
       <Name>MessageDbLib</Name>
