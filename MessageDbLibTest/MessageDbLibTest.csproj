@@ -80,6 +80,7 @@
     <Compile Include="PersistTest\CreateMessageTest.cs" />
     <Compile Include="PersistTest\CreateUserTest.cs" />
     <Compile Include="PersistTest\CreateMessageTransactionTest.cs" />
+    <Compile Include="RetrieveTest\RetrieveMessageTransactionTest.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

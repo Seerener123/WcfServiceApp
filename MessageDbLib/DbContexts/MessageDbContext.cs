@@ -29,10 +29,12 @@ namespace MessageDbLib.DbContexts
 
             UserTableConfiguration(modelBuilder);
             MessageTableConfigureation(modelBuilder);
+            MessageTransactionTableConfigureation(modelBuilder);
             UserTableDiscriminatorConfig(modelBuilder);
 
             MapUserToTable(modelBuilder);
             MapMessageToTable(modelBuilder);
+            MapMessageTransactionToTable(modelBuilder);
         }
 
         private void MapUserToTable(DbModelBuilder modelBuilder)
@@ -69,7 +71,7 @@ namespace MessageDbLib.DbContexts
         private void MessageTableConfigureation(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MessageTable>().Property(e => e.MessageText)
-                .IsUnicode(false);
+                .IsUnicode(true);
 
             modelBuilder.Entity<MessageTable>().HasMany(e => e.MessageTransactions).WithOptional(e => e.Message)
                 .HasForeignKey(e => e.MessageId);
@@ -83,7 +85,11 @@ namespace MessageDbLib.DbContexts
         private void MessageTransactionTableConfigureation(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MessageTransactionTable>().Property(e => e.EmailAddress)
-                .IsUnicode(false);
+                .IsUnicode(true);
+
+            modelBuilder.Entity<MessageTransactionTable>().Property(e => e.MessageReceived);
+
+            modelBuilder.Entity<MessageTransactionTable>().Property(e => e.MessageReceivedTime);
         }
 
         private void UserTableDiscriminatorConfig(DbModelBuilder modelBuilder)
