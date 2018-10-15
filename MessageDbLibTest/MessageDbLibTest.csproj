@@ -77,6 +77,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MessageQueueTest\RabbitMqPublishTest.cs" />
     <Compile Include="PersistTest\CreateMessageTest.cs" />
     <Compile Include="PersistTest\CreateUserTest.cs" />
     <Compile Include="PersistTest\CreateMessageTransactionTest.cs" />
