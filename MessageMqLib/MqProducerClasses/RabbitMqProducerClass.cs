@@ -10,7 +10,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace MessageMqLib.MqProducerClasses
 {
-    public class RabbitMqProdcuerClass : IMessageQueueProducer
+    public class RabbitMqProducerClass : IMessageQueueProducer
     {
         public void ExecuteMessageQueueing<TMessage>(TMessage message)
         {
@@ -24,7 +24,7 @@ namespace MessageMqLib.MqProducerClasses
         private ConnectionFactory CreateConnectionFactory()
         {
             ConnectionFactory connectionFactory = new ConnectionFactory();
-            connectionFactory.HostName = "localhost";
+            connectionFactory.HostName = "192.168.153.128";
             return connectionFactory;
         }
 

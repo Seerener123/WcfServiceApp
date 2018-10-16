@@ -98,6 +98,10 @@
       <Project>{77445fc9-820e-4bc0-aacc-870047e1b956}</Project>
       <Name>MessageDbLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MessageMqLib\MessageMqLib.csproj">
+      <Project>{7aa38ebf-e725-4936-94ce-b6dded5d8b85}</Project>
+      <Name>MessageMqLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

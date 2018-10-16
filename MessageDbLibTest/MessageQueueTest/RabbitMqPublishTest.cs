@@ -1,4 +1,5 @@
 ﻿using System;
+using MessageMqLib.MqProducerClasses;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MessageDbLibTest.MessageQueueTest
@@ -9,6 +10,8 @@ namespace MessageDbLibTest.MessageQueueTest
         [TestMethod]
         public void TestMethod1()
         {
+            RabbitMqProducerClass rabbitMqProdcuer = new RabbitMqProducerClass();
+            rabbitMqProdcuer.ExecuteMessageQueueing("Hello world");
         }
     }
 }
