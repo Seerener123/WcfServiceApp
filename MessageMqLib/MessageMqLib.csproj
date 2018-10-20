@@ -47,13 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MqConsumerClasses\RabbitMqConsumerClass.cs" />
+    <Compile Include="MqInterfaces\IMessageQueueConsumer.cs" />
     <Compile Include="MqInterfaces\IMessageQueueProducer.cs" />
     <Compile Include="MqProducerClasses\RabbitMqProducerClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MqConsumerClasses\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

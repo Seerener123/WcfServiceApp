@@ -14,17 +14,30 @@ namespace MessageMqLib.MqProducerClasses
     {
         public void ExecuteMessageQueueing<TMessage>(TMessage message)
         {
-            ConnectionFactory connectionFactory = CreateConnectionFactory();
-            using (IConnection connection = connectionFactory.CreateConnection())
+            try
             {
-                ExecuteMessageSending(connection, message);
+                ConnectionFactory connectionFactory = CreateConnectionFactory();
+                using (IConnection connection = connectionFactory.CreateConnection())
+                {
+                    ExecuteMessageSending(connection, message);
+                }
+            }
+            catch (Exception exception)
+            {
+                // logging
+                throw new InvalidOperationException("RabbitMqProducerClass encountered when trying to queue a message. See inner-exception" +
+                    "for more detail.", exception);
             }
         }
 
         private ConnectionFactory CreateConnectionFactory()
         {
             ConnectionFactory connectionFactory = new ConnectionFactory();
-            connectionFactory.HostName = "192.168.153.128";
+            connectionFactory.UserName = "admin";
+            connectionFactory.Password = "";
+            connectionFactory.VirtualHost = "/";
+            connectionFactory.Port = AmqpTcpEndpoint.UseDefaultPort;
+            connectionFactory.HostName = "192.168.44.128";
             return connectionFactory;
         }
 
@@ -34,7 +47,7 @@ namespace MessageMqLib.MqProducerClasses
             {
                 channel.QueueDeclare(queue: "hello", durable: false, exclusive: false, autoDelete: false, arguments: null);
                 // send message part here
-                var binaryData = ConvertToBinary(message);
+                byte[] binaryData = ConvertToBinary(message);
                 channel.BasicPublish(exchange: "", routingKey: "hello", basicProperties: null, body: binaryData);
             }
         }
