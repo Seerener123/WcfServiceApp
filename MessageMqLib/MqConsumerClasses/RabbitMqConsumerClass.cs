@@ -3,6 +3,7 @@ using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -36,11 +37,11 @@ namespace MessageMqLib.MqConsumerClasses
         private ConnectionFactory CreateConnectionFactory()
         {
             ConnectionFactory connectionFactory = new ConnectionFactory();
-            connectionFactory.UserName = "admin";
-            connectionFactory.Password = "";
+            connectionFactory.UserName = ConfigurationManager.AppSettings["RabbitMqConnectionUserName"];
+            connectionFactory.Password = ConfigurationManager.AppSettings["RabbitMqConnectionPassword"];
             connectionFactory.VirtualHost = "/";
             connectionFactory.Port = AmqpTcpEndpoint.UseDefaultPort;
-            connectionFactory.HostName = "192.168.44.128";
+            connectionFactory.HostName = ConfigurationManager.AppSettings["RabbitMqConnectionHostName"];
             return connectionFactory;
         }
 
