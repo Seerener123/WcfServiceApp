@@ -1,5 +1,7 @@
 ﻿using System;
+using MessageDbLib.MessagingEntities;
 using MessageMqLib.MqProducerClasses;
+using MessageMqLib.QueueConstants;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MessageDbLibTest.MessageQueueTest
@@ -10,8 +12,12 @@ namespace MessageDbLibTest.MessageQueueTest
         [TestMethod]
         public void TestMethod1()
         {
-            RabbitMqProducerClass rabbitMqProdcuer = new RabbitMqProducerClass();
-            rabbitMqProdcuer.ExecuteMessageQueueing("Hello world");
+            MessageTable messageTable = new MessageTable();
+            messageTable.MessageCreated = DateTime.Now;
+            messageTable.SenderId = 1;
+            messageTable.MessageText = "Testing RabbitMq by sending an enitity over the queue.";
+            RabbitMqProducerClass rabbitMqProdcuer = new RabbitMqProducerClass(QueueTypeConstant.MongoDbPersisentQueue, QueueTypeConstant.MongoDbPersisentQueue);
+            rabbitMqProdcuer.ExecuteMessageQueueing(messageTable);
         }
     }
 }

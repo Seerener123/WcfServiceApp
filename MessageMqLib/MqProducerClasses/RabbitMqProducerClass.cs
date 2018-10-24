@@ -8,11 +8,21 @@ using RabbitMQ.Client;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Configuration;
+using System.Runtime.Serialization;
 
 namespace MessageMqLib.MqProducerClasses
 {
     public class RabbitMqProducerClass : IMessageQueueProducer
     {
+        private readonly string _queueName;
+        private readonly string _routeKey;
+
+        public RabbitMqProducerClass(string queueName, string routeKey)
+        {
+            _queueName = queueName;
+            _routeKey = routeKey;
+        }
+
         public void ExecuteMessageQueueing<TMessage>(TMessage message)
         {
             try
@@ -46,19 +56,19 @@ namespace MessageMqLib.MqProducerClasses
         {
             using (IModel channel = connection.CreateModel())
             {
-                channel.QueueDeclare(queue: "hello", durable: false, exclusive: false, autoDelete: false, arguments: null);
+                channel.QueueDeclare(queue: _queueName, durable: false, exclusive: false, autoDelete: false, arguments: null);
                 // send message part here
                 byte[] binaryData = ConvertToBinary(message);
-                channel.BasicPublish(exchange: "", routingKey: "hello", basicProperties: null, body: binaryData);
+                channel.BasicPublish(exchange: "", routingKey: _routeKey, basicProperties: null, body: binaryData);
             }
         }
 
         private byte[] ConvertToBinary<TMessage>(TMessage item)
         {
-            BinaryFormatter binaryFormatter = new BinaryFormatter();
+            DataContractSerializer dataContractSerialiser = new DataContractSerializer(typeof(TMessage));
             using (MemoryStream memoryStream = new MemoryStream())
             {
-                binaryFormatter.Serialize(memoryStream, item);
+                dataContractSerialiser.WriteObject(memoryStream, item);
                 return memoryStream.ToArray();
             }
             // https://stackoverflow.com/questions/1446547/how-to-convert-an-object-to-a-byte-array-in-c-sharp

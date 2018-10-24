@@ -6,8 +6,10 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MessageMqLib.MqConsumerClasses
@@ -15,6 +17,14 @@ namespace MessageMqLib.MqConsumerClasses
     public class RabbitMqConsumerClass : IMessageQueueConsumer
     {
         private object _message;
+        private readonly string _queueType;
+        private AutoResetEvent _autoResetEvent;
+
+        public RabbitMqConsumerClass(string queueType)
+        {
+            _queueType = queueType;
+            _autoResetEvent = new AutoResetEvent(false);
+        }
 
         public TMessage ExecuteMessageRetrieving<TMessage>() where TMessage : class
         {
@@ -49,19 +59,21 @@ namespace MessageMqLib.MqConsumerClasses
         {
             using (IModel channel = connection.CreateModel())
             {
-                channel.QueueDeclare(queue: "hello", durable: false, exclusive: false, autoDelete: false, arguments: null);
+                channel.QueueDeclare(queue: _queueType, durable: false, exclusive: false, autoDelete: false, arguments: null);
                 EventingBasicConsumer consumer = new EventingBasicConsumer(channel);
-                consumer.Received += EventBasicConsumer_Received;
-                channel.BasicConsume(queue: "hello", autoAck: true, consumer: consumer);
+                consumer.Received += EventBasicConsumer_Received<TMessage>;
+                channel.BasicConsume(queue: _queueType, autoAck: true, consumer: consumer);
+                _autoResetEvent.WaitOne(5000);
             }
         }
 
-        private void EventBasicConsumer_Received(object sender, BasicDeliverEventArgs args)
+        private void EventBasicConsumer_Received<TMessage>(object sender, BasicDeliverEventArgs args)
         {
             try
             {
                  byte[] bodyDataByteArray = args.Body;
-                _message = ByteArrayToObject(bodyDataByteArray);
+                _message = ByteArrayToObject<TMessage>(bodyDataByteArray);
+                _autoResetEvent.Set();
             }
             catch (Exception exception)
             {
@@ -69,14 +81,14 @@ namespace MessageMqLib.MqConsumerClasses
             }
         }
 
-        private object ByteArrayToObject(byte[] arrayBytes)
+        private object ByteArrayToObject<TMessage>(byte[] arrayBytes)
         {
             using (var memoryStream = new MemoryStream())
             {
-                BinaryFormatter binaryFormatter = new BinaryFormatter();
+                DataContractSerializer binaryFormatter = new DataContractSerializer(typeof(TMessage));
                 memoryStream.Write(arrayBytes, 0, arrayBytes.Length);
                 memoryStream.Seek(0, SeekOrigin.Begin);
-                return binaryFormatter.Deserialize(memoryStream);
+                return binaryFormatter.ReadObject(memoryStream);
             }
         }
     }
