@@ -36,7 +36,7 @@ namespace MessageMqLib.MqProducerClasses
             catch (Exception exception)
             {
                 // logging
-                throw new InvalidOperationException("RabbitMqProducerClass encountered when trying to queue a message. See inner-exception" +
+                throw new InvalidOperationException("RabbitMqProducerClass encountered an error when trying to queue a message. See inner-exception" +
                     "for more detail.", exception);
             }
         }
@@ -56,10 +56,10 @@ namespace MessageMqLib.MqProducerClasses
         {
             using (IModel channel = connection.CreateModel())
             {
-                channel.QueueDeclare(queue: _queueName, durable: false, exclusive: false, autoDelete: false, arguments: null);
-                // send message part here
+                channel.QueueDeclare(_queueName, false, false, false, null);
+
                 byte[] binaryData = ConvertToBinary(message);
-                channel.BasicPublish(exchange: "", routingKey: _routeKey, basicProperties: null, body: binaryData);
+                channel.BasicPublish("", _routeKey, null, binaryData);
             }
         }
 

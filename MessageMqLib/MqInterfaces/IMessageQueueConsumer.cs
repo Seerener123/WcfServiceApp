@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace MessageMqLib.MqInterfaces
 {
-    public interface IMessageQueueConsumer
+    public interface IMessageQueueConsumer<TMessage> where TMessage : class
     {
-        TMessage ExecuteMessageRetrieving<TMessage>() where TMessage : class;
+        List<TMessage> Messages { get; }
+        TMessage ExecuteRetrievalOfMultipleMessages(); //<TMessage>() where TMessage : class;
+        TMessage ExecuteRetrievalOfSingleMessage(); //<TMessage>() where TMessage : class;
     }
 }

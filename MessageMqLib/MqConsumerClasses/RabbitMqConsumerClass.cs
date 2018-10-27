@@ -14,26 +14,40 @@ using System.Threading.Tasks;
 
 namespace MessageMqLib.MqConsumerClasses
 {
-    public class RabbitMqConsumerClass : IMessageQueueConsumer
+    public class RabbitMqConsumerClass<TMessage> : IMessageQueueConsumer<TMessage> where TMessage : class
     {
+        private object _object = new object();
         private object _message;
-        private readonly string _queueType;
+        private readonly string _queueName;
         private AutoResetEvent _autoResetEvent;
+
+        private List<TMessage> _messages;
+        public List<TMessage> Messages
+        {
+            get
+            {
+                lock (_object)
+                {
+                    return _messages;
+                }
+            }
+        }
 
         public RabbitMqConsumerClass(string queueType)
         {
-            _queueType = queueType;
+            _queueName = queueType;
+            _messages = new List<TMessage>();
             _autoResetEvent = new AutoResetEvent(false);
         }
 
-        public TMessage ExecuteMessageRetrieving<TMessage>() where TMessage : class
+        public TMessage ExecuteRetrievalOfMultipleMessages()
         {
             try
             {
                 ConnectionFactory connectionFactory = CreateConnectionFactory();
                 using (IConnection connection = connectionFactory.CreateConnection())
                 {
-                    ExecuteMessageReceivinging<TMessage>(connection);
+                    ExecuteMultipleMessagesRetrieval(connection);
                 }
                 return _message as TMessage;
             }
@@ -55,24 +69,34 @@ namespace MessageMqLib.MqConsumerClasses
             return connectionFactory;
         }
 
-        private void ExecuteMessageReceivinging<TMessage>(IConnection connection)
+        private void ExecuteMultipleMessagesRetrieval(IConnection connection)
         {
             using (IModel channel = connection.CreateModel())
             {
-                channel.QueueDeclare(queue: _queueType, durable: false, exclusive: false, autoDelete: false, arguments: null);
+                channel.QueueDeclare(_queueName, false, false, false, null);
                 EventingBasicConsumer consumer = new EventingBasicConsumer(channel);
-                consumer.Received += EventBasicConsumer_Received<TMessage>;
-                channel.BasicConsume(queue: _queueType, autoAck: true, consumer: consumer);
+                consumer.Received += EventBasicConsumer_Received;
+                channel.BasicConsume(_queueName, false, consumer);
                 _autoResetEvent.WaitOne(5000);
             }
         }
 
-        private void EventBasicConsumer_Received<TMessage>(object sender, BasicDeliverEventArgs args)
+        private void EventBasicConsumer_Received(object sender, BasicDeliverEventArgs args)
         {
             try
             {
-                 byte[] bodyDataByteArray = args.Body;
-                _message = ByteArrayToObject<TMessage>(bodyDataByteArray);
+                byte[] bodyDataByteArray = args.Body;
+                if (ByteArrayToObject(bodyDataByteArray) is TMessage message)
+                {
+                    lock (_object)
+                    {
+                        _messages.Add(message);
+                    }
+                }
+
+                if (sender is EventingBasicConsumer senderObject)
+                    senderObject.Model.BasicAck(args.DeliveryTag, false);
+
                 _autoResetEvent.Set();
             }
             catch (Exception exception)
@@ -81,7 +105,35 @@ namespace MessageMqLib.MqConsumerClasses
             }
         }
 
-        private object ByteArrayToObject<TMessage>(byte[] arrayBytes)
+        public TMessage ExecuteRetrievalOfSingleMessage()
+        {
+            try
+            {
+                ConnectionFactory connectionFactory = CreateConnectionFactory();
+                using (IConnection connection = connectionFactory.CreateConnection())
+                {
+                    using (IModel channel = connection.CreateModel())
+                    {
+                        channel.QueueDeclare(_queueName, false, false, false, null);
+                        BasicGetResult result = channel.BasicGet(_queueName, false);
+                        if (result != null)
+                        {
+                            byte[] bodyDataByteArray = result.Body;
+                            _message = ByteArrayToObject(bodyDataByteArray);
+                            channel.BasicAck(result.DeliveryTag, false);
+                        }
+                    }
+                }
+                return _message as TMessage;
+            }
+            catch (Exception exception)
+            {
+                //
+            }
+            return null;
+        }
+
+        private object ByteArrayToObject(byte[] arrayBytes)
         {
             using (var memoryStream = new MemoryStream())
             {
