@@ -16,7 +16,7 @@ namespace MessageDbLibTest.MessageQueueTest
             messageTable.MessageCreated = DateTime.Now;
             messageTable.SenderId = 1;
             messageTable.MessageText = "Testing RabbitMq by sending an enitity over the queue.";
-            RabbitMqProducerClass rabbitMqProdcuer = new RabbitMqProducerClass(QueueTypeConstant.MongoDbPersisentQueue, QueueTypeConstant.MongoDbPersisentQueue);
+            RabbitMqProducerClass rabbitMqProdcuer = new RabbitMqProducerClass(QueueTypeConstant.MongoDbPersistentQueue, QueueTypeConstant.MongoDbPersistentQueue);
             rabbitMqProdcuer.ExecuteMessageQueueing(messageTable);
         }
     }

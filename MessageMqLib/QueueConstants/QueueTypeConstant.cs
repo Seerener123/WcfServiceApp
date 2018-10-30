@@ -8,6 +8,8 @@ namespace MessageMqLib.QueueConstants
 {
     public class QueueTypeConstant
     {
-        public const string MongoDbPersisentQueue = "MongoDbPersisentQueue"; 
+        public const string MongoDbPersistentQueue = "MongoDbPersisentQueue";
+        public const string MongoDbPersistentUserService = "MongoDbPersistentUserService";
+        public const string MongoDbPersistentMessageService = "MongoDbPersistentMessageService";
     }
 }

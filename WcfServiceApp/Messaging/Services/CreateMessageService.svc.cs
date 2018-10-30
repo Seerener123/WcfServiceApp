@@ -11,6 +11,8 @@ using WcfServiceApp.Messaging.DataContracts;
 using System.Data.Entity;
 using MessageDbLib.DbContextFactorys;
 using WcfServiceApp.Messaging.ServiceInterfaces;
+using MessageMqLib.MqProducerClasses;
+using MessageMqLib.QueueConstants;
 
 namespace WcfServiceApp.Messaging.Services
 {
@@ -35,6 +37,7 @@ namespace WcfServiceApp.Messaging.Services
                 MessageTable newMessage = CreateNewMessage(message);
                 PersistMessage(newMessage);
                 CreateMessageTransaction(message, newMessage);
+                PersistMessageToMongoDbService(newMessage);
             }
             catch (Exception exception)
             {
@@ -105,6 +108,13 @@ namespace WcfServiceApp.Messaging.Services
                 Message = message
             };
             throw new FaultException<EntityErrorContract>(error);
+        }
+
+        private void PersistMessageToMongoDbService(MessageTable message)
+        {
+            RabbitMqProducerClass rabbitMqProducer = new RabbitMqProducerClass(QueueTypeConstant.MongoDbPersistentUserService,
+                QueueTypeConstant.MongoDbPersistentUserService);
+            rabbitMqProducer.ExecuteMessageQueueing(message);
         }
     }
 }

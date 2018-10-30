@@ -12,7 +12,7 @@ namespace MessageDbLibTest.MessageQueueTest
         [TestMethod]
         public void TestMethod1()
         {
-            RabbitMqConsumerClass<MessageTable> rabbitMqConsumer = new RabbitMqConsumerClass<MessageTable>(QueueTypeConstant.MongoDbPersisentQueue);
+            RabbitMqConsumerClass<MessageTable> rabbitMqConsumer = new RabbitMqConsumerClass<MessageTable>(QueueTypeConstant.MongoDbPersistentQueue);
             //MessageTable message = rabbitMqConsumer.ExecuteRetrievalOfMultipleMessages();
             MessageTable message = rabbitMqConsumer.ExecuteRetrievalOfSingleMessage();
             MessageTable messageData = message as MessageTable;

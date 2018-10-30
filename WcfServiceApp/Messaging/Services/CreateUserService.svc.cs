@@ -4,6 +4,8 @@ using MessageDbLib.DbContextFactorys;
 using MessageDbLib.DbPersistances;
 using MessageDbLib.DbRetrievals;
 using MessageDbLib.MessagingEntities;
+using MessageMqLib.MqProducerClasses;
+using MessageMqLib.QueueConstants;
 using WcfServiceApp.Exceptions.Datacontacts;
 using WcfServiceApp.Messaging.ServiceInterfaces;
 
@@ -49,6 +51,7 @@ namespace WcfServiceApp.Messaging.Services
                     throw new InvalidOperationException("This username has already been taken.");
                 }
                 PersistNewUser(user);
+                PersistUserToMongoDbService(user);
             }
             catch (InvalidOperationException exception)
             {
@@ -65,6 +68,13 @@ namespace WcfServiceApp.Messaging.Services
             UserPersistant newUser = new UserPersistant(null, DatabaseOptionConfigRetriever.DatabaseOptionAppSetting);
             newUser.AddToPending(user);
             newUser.SaveChange();
+        }
+
+        private void PersistUserToMongoDbService(UserTable user)
+        {
+            RabbitMqProducerClass rabbitMqProducer = new RabbitMqProducerClass(QueueTypeConstant.MongoDbPersistentUserService, 
+                QueueTypeConstant.MongoDbPersistentUserService);
+            rabbitMqProducer.ExecuteMessageQueueing(user);
         }
 
         private void ThrowErrorMessage(string message)
