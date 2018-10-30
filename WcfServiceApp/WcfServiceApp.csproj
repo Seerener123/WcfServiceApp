@@ -82,6 +82,7 @@
     <Compile Include="Exceptions\Datacontacts\EntityErrorContract.cs" />
     <Compile Include="Exceptions\Datacontacts\IErrorsContract.cs" />
     <Compile Include="Exceptions\Datacontacts\LoginErrorContract.cs" />
+    <Compile Include="Exceptions\Datacontacts\MessageQueueErrorContract.cs" />
     <Compile Include="Exceptions\Datacontacts\NonExistantUserErrorContract.cs" />
     <Compile Include="Exceptions\Datacontacts\UserExistErrorContract.cs" />
     <Compile Include="Messaging\DataContracts\IMessageContract.cs" />

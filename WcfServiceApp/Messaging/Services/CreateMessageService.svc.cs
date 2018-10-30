@@ -39,6 +39,10 @@ namespace WcfServiceApp.Messaging.Services
                 CreateMessageTransaction(message, newMessage);
                 PersistMessageToMongoDbService(newMessage);
             }
+            catch (FaultException<MessageQueueErrorContract> exception)
+            {
+                throw;
+            }
             catch (Exception exception)
             {
                 RerouteErrorMessage(exception.Message);
@@ -103,7 +107,7 @@ namespace WcfServiceApp.Messaging.Services
 
         private void RerouteErrorMessage(string message)
         {
-            var error = new EntityErrorContract
+            EntityErrorContract error = new EntityErrorContract
             {
                 Message = message
             };
@@ -112,9 +116,21 @@ namespace WcfServiceApp.Messaging.Services
 
         private void PersistMessageToMongoDbService(MessageTable message)
         {
-            RabbitMqProducerClass rabbitMqProducer = new RabbitMqProducerClass(QueueTypeConstant.MongoDbPersistentUserService,
-                QueueTypeConstant.MongoDbPersistentUserService);
-            rabbitMqProducer.ExecuteMessageQueueing(message);
+            try
+            {
+                RabbitMqProducerClass rabbitMqProducer = new RabbitMqProducerClass(QueueTypeConstant.MongoDbPersistentUserService, 
+                    QueueTypeConstant.MongoDbPersistentUserService);
+                rabbitMqProducer.ExecuteMessageQueueing(message);
+            }
+            catch (Exception exception)
+            {
+                MessageQueueErrorContract error = new MessageQueueErrorContract()
+                {
+                    Message = "Error encountered when trying to queue to message queue.",
+                    ExceptionMessage = exception.Message
+                };
+                throw new FaultException<MessageQueueErrorContract>(error);
+            }
         }
     }
 }
